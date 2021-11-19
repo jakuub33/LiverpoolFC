@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/img/logo.png" alt="Navbar logo" class="navbar-logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <!-- Jeśli url to '/' to zwróć klasę active niżej jest skrócony if: (jeśli true && operacja) -->
+          <!-- Dzięki temu jak jesteśmy na głównej to napis jest podświetlony -->
+          <a class="nav-link <%- url === '/' && 'active' %>" aria-current="page" href="/">Home</a>
+        </li>
+        <!-- Jeśli user jest zalogowany to nie pokazujemy w nav Rejestracji i Logowania -->
+        <% if (!user) { %>
+        <li class="nav-item">
+          <a class="nav-link <%- url.includes('/zarejestruj') ? 'active' : '' %>" href="/zarejestruj">
+            Rejestracja
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <%- url.includes('/zaloguj') ? 'active' : '' %>" href="/zaloguj">
+            Logowanie
+          </a>
+        </li>
+        <% } else { %>
+        <li class="nav-item">
+          <a class="nav-link <%- url.includes('/zalogowany/profil') ? 'active' : '' %>"
+            href="/zalogowany/profil">Profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/wyloguj">Wyloguj</a>
+        </li>
+        <% } %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Informacje
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Historia</a></li>
+            <li><a class="dropdown-item" href="#">Stadion</a></li>
+            <li><a class="dropdown-item" href="#">Herb</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

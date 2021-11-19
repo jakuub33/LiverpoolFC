@@ -1,0 +1,194 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    position: relative;
+    min-height: 80vh;
+    font-family: 'Montserrat', sans-serif;
+    // background: rgb(247, 115, 58);
+    background: linear-gradient(332deg, rgba(96, 0, 0, 1) 0%, rgba(247, 115, 58, 1) 100%);
+    // color: white;
+}
+
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+main {
+    .container {
+        padding-bottom: 2.5rem;
+        /* Footer height */
+    }
+}
+
+//Podkreślenie każdej h2
+.underline {
+    margin: 0 auto;
+    height: 3px;
+    width: 60px;
+    background-color: red;
+}
+
+/* NAVBAR */
+nav {
+    a, .nav-link {
+        color: white;
+    }
+
+    a, .nav-link:hover {
+        color: orangered;
+    }
+
+    .active {
+        color: orangered; //Jeśli dana sekcja jest aktywna
+    }
+
+    .navbar-logo {
+        width: 50px;
+    }
+
+}
+
+form {
+    margin: auto;
+
+    h1 {
+        text-align: center;
+    }
+
+    .form-control {
+        margin: auto;
+        width: 50%;
+        border-color: black;
+    }
+
+    button {
+        width: 30%;
+    }
+}
+
+.scoreBoard {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.scoreBoardHeader {
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.scoreBoard h4:nth-of-type(2n) {
+    margin-top: 1rem;
+}
+
+.finishedMatchesList,
+.UpcomingMatchesList {
+    max-height: 500px;
+    overflow-y: scroll;
+    -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+    font-size: 18px;
+    width: 95%;
+}
+
+.table {
+    width: 45%;
+    margin-top: 1rem;
+    -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+}
+
+.leagueTable {
+    display: none;
+}
+
+.leagueTable h1 {
+    margin-top: 5rem;
+}
+
+.teamCrest {
+    height: 35px;
+    width: 40px;
+}
+
+.list-group-item-dark {
+    color: white;
+    background-color: #212529;
+}
+
+/* FOOTER */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+    /* Footer height */
+    color: white;
+}
+
+.contact {
+
+    .contact-bg {
+        position: relative;
+        background-image: url('../img/contact-bg640x426.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        z-index: 0;
+    }
+
+    .shadow-bg {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, .8);
+        z-index: -1;
+    }
+
+    //Formatowanie linków z kotwicami
+    a {
+        padding-right: 10px;
+        text-decoration: none;
+        color: white;
+        transition: color .3s;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    //Formatowanie wyglądu ikon społecznościowych
+    .icons a {
+        padding: 0 5px;
+        text-decoration: none;
+        color: white;
+        font-size: 25px;
+        transition: color .3s;
+    }
+
+    .icons a:hover,
+    a:hover {
+        color: red;
+    }
+
+    //Dane adresowe
+    .info {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .contact {
+        .contact-bg {
+            background-image: url('../img/contact-bg1920x1280.jpg');
+        }
+    }
+}
