@@ -7,9 +7,9 @@
 
 body {
   position: relative;
-  min-height: 80vh;
+  min-height: 90vh;
   font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(332deg, #600000 0%, #f7733a 100%);
+  background: linear-gradient(343deg, #600000 0%, #f7733a 100%);
 }
 
 h2 {
@@ -124,7 +124,7 @@ footer {
   bottom: 0;
   width: 100%;
   height: 2.5rem;
-  /* Footer height */
+  margin-top: 500px;
   color: white;
 }
 

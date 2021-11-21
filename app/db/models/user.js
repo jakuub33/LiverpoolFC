@@ -1,6 +1,7 @@
 const mongoose = require('mongoose'); //pobieramy mongoose
 const Schema = mongoose.Schema; //pobieramy Schema
 const bcrypt = require('bcrypt'); //biblioteka do hashowania hasła
+const uniqueValidator = require('mongoose-unique-validator');
 const { checkEmail, checkPassword } = require('../validators'); //walidacje do konkretnych pól w osobnym pliku
 
 //Stworzenie modelu, na podstawie, którego powstanie kolekcja
@@ -9,7 +10,8 @@ const userSchema = new Schema({
         type: String,
         required: [true, 'Pole nick jest wymagane'],
         minLength: [3, 'Minimalna liczba znaków to 3'],
-        unique: true, //nie można tutaj wyświetlić informacji o błędzie, zostanie dodana niżej jako middleware
+        unique: true, //obłużone niżej dzięki bibliotece mongoose-unique-validator
+        uniqueCaseInsensitive: true, //KUBI i kubi to to samo (rozróżnanie wielkości liter)
     },
     email: {
         type: String,
@@ -42,17 +44,8 @@ userSchema.pre('save', function(next) {
     }
 });
 
-//API: Schema.prototype.post() - uruchamia się po zapisie
-userSchema.post('save', function(error, doc, next) {
-    if (error.code === 11000) {
-        //1100 to kod błędu dla pola "unique"
-        error.errors = {
-            nick: { message: 'Ten nick lub email jest już zajęty!'},
-            email: { message: 'Ten nick lub email jest już zajęty!'}
-        };
-    }
-    next(error);
-});
+//Sprawdzanie unikalności nicku i maila
+userSchema.plugin(uniqueValidator, { message: 'Ten {PATH} jest już zajęty!' });
 
 //metody ogólnodostępne
 userSchema.methods = {
