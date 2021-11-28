@@ -5,7 +5,7 @@
         <label for="email" class="form-label">Email</label>
         <!-- niżej: Dzięki value, po złym wypełnieniu pól, wartości z pól nie znikają -->
         <input type="email" 
-            class="form-control <%- errors?.email ? 'is-invalid' : '' %>"   
+            class="form-control <%= errors?.email ? 'is-invalid' : '' %>"   
             name="email"
             value="<%= form.email %>"
             id="email"

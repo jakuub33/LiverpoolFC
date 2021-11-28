@@ -4,9 +4,9 @@
     <div class="mb-3">
         <label for="nick" class="form-label">Nick</label>
         <input type="text" 
-            class="form-control <%- errors?.nick ? 'is-invalid' : '' %>" 
+            class="form-control <%= errors?.nick ? 'is-invalid' : '' %>" 
             name="nick"
-            value="<%- form.nick %>"
+            value="<%= form.nick %>"
             id="nick">        
         <% if (errors?.nick) { %>  
             <div class="invalid-feedback"><%= errors.nick.message %></div>    
@@ -17,7 +17,7 @@
         <label for="email" class="form-label">Email</label>
         <!-- niżej: Dzięki value, po złym wypełnieniu pól, wartości z pól nie znikają -->
         <input type="email" 
-            class="form-control <%- errors?.email ? 'is-invalid' : '' %>"   
+            class="form-control <%= errors?.email ? 'is-invalid' : '' %>"   
             name="email"
             value="<%= form.email %>"
             id="email"
@@ -31,7 +31,7 @@
     <div class="mb-3">
         <label for="password" class="form-label">Hasło</label>
         <input type="password" 
-            class="form-control <%- errors?.password ? 'is-invalid' : '' %>" 
+            class="form-control <%= errors?.password ? 'is-invalid' : '' %>" 
             name="password"
             id="password"
             required>        

@@ -6,10 +6,21 @@ const ejsLayouts = require('express-ejs-layouts'); //biblioteka - umieszcza elem
 const app = express();
 const cookieParser = require('cookie-parser'); //tool do zarządzania sesją
 const session = require('express-session'); //tool do czytania cookies
-const sessionKeySecret = 'df3f12d390hjkhj0k';
+const { sessionKeySecret } = require('./config');
+const helmet = require('helmet'); //biblioteka pomagająca w zabezpieczeniach apki
+const rateLimiterMiddleware = require('./middleware/rate-limiter-middleware'); //zabezpieczenia Brute-force / DDOS
 
 // init database
 require('./db/mongoose');
+
+// helps secure Express apps by setting various HTTP headers
+// w razie problemów, można helmet zakomentować i odświeżyć stronę z usunięciem cache (Ctrl + F5)
+app.use(helmet({
+    //ustawiamy jakie linki chcemy akceptować (dyrektywy)
+    //dopóki nie skończe aplikacji nie chce komplikować dodawania zewnętrznych linków, można to włączyć na koniec
+    contentSecurityPolicy: false
+})); 
+app.use(rateLimiterMiddleware);
 
 // session
 app.use(session({
