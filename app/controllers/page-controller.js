@@ -8,6 +8,18 @@ class PageController {
         });
     }
 
+    showSchedule(req, res) {    
+        res.render('pages/schedule', {
+            title: 'Terminarz'
+        });
+    }
+
+    showTable(req, res) {    
+        res.render('pages/table', {
+            title: 'Tabela'
+        });
+    }
+
     //adresy 404
     showNotFound(req, res) {
         res.render('errors/404', {

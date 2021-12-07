@@ -14,6 +14,16 @@
           <!-- Dzięki temu jak jesteśmy na głównej to napis jest podświetlony -->
           <a class="nav-link <%- url === '/' && 'active' %>" aria-current="page" href="/">Home</a>
         </li>
+        <li>
+          <div class="nav-item">
+            <a class="nav-link <%- url === '/tabela' && 'active' %>" href="/tabela">Tabela</a>
+          </div>
+        </li>
+        <li>
+          <div class="nav-item">
+            <a class="nav-link <%- url === '/terminarz' && 'active' %>" href="/terminarz">Terminarz</a>
+          </div>
+        </li>
         <!-- Jeśli user jest zalogowany to nie pokazujemy w nav Rejestracji i Logowania -->
         <% if (!user) { %>
         <li class="nav-item">

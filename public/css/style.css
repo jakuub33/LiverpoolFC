@@ -30,11 +30,13 @@ main .container {
 }
 
 /* NAVBAR */
-nav a, nav .nav-link {
+nav a,
+nav .nav-link {
   color: white;
 }
 
-nav a, nav .nav-link:hover {
+nav a,
+nav .nav-link:hover {
   color: orangered;
 }
 
@@ -62,6 +64,40 @@ form .form-control {
 
 form button {
   width: 30%;
+}
+
+.menu i {
+  font-size: 60px;
+  margin: 0;
+  padding: 0;
+}
+
+.menu .far,
+.menu .fas {
+  padding: 20px;
+}
+
+.menu p {
+  margin: 0;
+  font-size: 20px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: white;
+  -webkit-transition: color .3s;
+  transition: color .3s;
+}
+
+.menu a:hover {
+  color: orangered;
+}
+
+.menu .element {
+  padding: 25px;
+  margin: 20px 10px;
+  border: 3px solid white;
+  border-radius: 10%;
 }
 
 .scoreBoard {

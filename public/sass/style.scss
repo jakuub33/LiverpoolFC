@@ -4,7 +4,7 @@
     margin: 0;
 }
 
-body {
+body {    
     position: relative;
     min-height: 90vh;
     font-family: 'Montserrat', sans-serif;
@@ -35,11 +35,14 @@ main {
 
 /* NAVBAR */
 nav {
-    a, .nav-link {
+
+    a,
+    .nav-link {
         color: white;
     }
 
-    a, .nav-link:hover {
+    a,
+    .nav-link:hover {
         color: orangered;
     }
 
@@ -68,6 +71,42 @@ form {
 
     button {
         width: 30%;
+    }
+}
+
+.menu {
+
+    i {
+        font-size: 60px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .far,
+    .fas {
+        padding: 20px;
+    }
+
+    p {
+        margin: 0;
+        font-size: 20px;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+        transition: color .3s;
+    }
+
+    a:hover {
+        color: orangered;
+    }
+
+    .element {
+        padding: 25px;
+        margin: 20px 10px;
+        border: 3px solid white;
+        border-radius: 10%;
     }
 }
 
