@@ -1,0 +1,63 @@
+<!-- Formularz można użyć na kilku stronach. Po co go edytować w każdym miejscu, wystarczy raz -->
+<div class="container">
+    <!-- Aby zdjęcie mogło zostać przesłane musimy zmienić enctype, czyli form musi być wysłany w inny sposób -->
+    <!-- Do tego potrzebujemy nowy middleware dla multipart/form-data, dodamy go tylko dla określonych stron w web.js -->
+    <form method="POST" enctype="multipart/form-data">
+        <!-- wyżej: action="" to link na który wysyłamy formularz, powinien być taki jak link formularza, jak usuniemy pole action   to wezmie domyslnie aktualny adres  -->
+        <div class="mb-3">
+            <label for="" class="form-label">Tytuł *</label>
+            <!-- niżej: Dzięki value, po złym wypełnieniu pól, wartości z pól nie znikają -->
+            <input 
+                type="text" 
+                name="mainTitle"
+                maxlength="40"
+                value="<%= form.mainTitle %>" 
+                class="form-control <%= errors?.mainTitle ? 'is-invalid' : '' %>" required>   
+            <!-- sprawdzamy czy konkretny błąd tego pola istnieje, jeśli nie ma to wartość jest null i nie wchodzi do ifa -->
+            <% if (errors?.mainTitle) { %>  
+                <div class="invalid-feedback"><%= errors.mainTitle.message %></div>    
+            <% } %>
+        </div>
+        
+        <% if (form.image) { %>
+            <div class="row">
+                <div class="col">
+                    <img src="/uploads/<%- form.image %>" class="img-fluid" alt="zdjecie aktualnosci">
+                    <a href="/zalogowany/wiadomosci/<%- form.slug %>/usun-zdjecie" class="btn btn-sm btn-danger">Usuń</a>
+                </div>
+            </div>
+        <% } %>
+        <div class="mb-3">
+            <label for="image" class="form-label">Zdjęcie</label>
+            <input type="file" name="image" class="form-control" id="image">
+        </div>    
+
+        <div class="mb-3">
+            <label for="" class="form-label">Treść *</label>
+            <input
+                type="text"
+                name="text"
+                value="<%= form.text %>"
+                class="form-control"
+            />
+            <% if (errors?.text) { %>
+            <div class="invalid-feedback"><%= errors.text.message %></div>
+            <% } %>
+        </div>
+
+        <button class="btn btn-primary"><%- buttonText %></button>
+    </form>
+
+    <!-- powinno być " typeof errors !== 'undefined' ", ale mamy zmienną zdefiniowaną w view-variables -->
+    <% if (errors) { %> 
+        <div class="alert alert-danger mt-3 text-center">
+            <!-- <ul>
+                <% for (const key in errors) { %>
+                    <li><%= errors[key].message %></li>
+                <% } %>
+            </ul> -->
+            <!-- Możesz tak jak wyżej wyświetlić ponownie błędy napisane pod formularzem, ale skoro będą napisane czy konkretnym polu to niżej napiszemy tylko informację -->
+            Popraw dane!
+        </div>
+    <% } %>
+</div>

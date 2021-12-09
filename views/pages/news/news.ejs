@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="card card-body bg-dark text-white">
+        <h1 class="text-center">Wiadomości:</h1>
+
+        <% if (user) { %>
+            <a href="/zalogowany/wiadomosci/dodaj" class="btn btn-success mb-3">Dodaj nową wiadomość!</a>
+        <% } %>
+            
+        <!-- Aby sort nie gryzł się z query w slug to trzeba to zrobić w jednym formularzu -->
+        <form method="GET">   
+            <%- include('partials/search') %>
+
+            <div class="row">
+                <div class="col-3">
+                    <%- include('partials/filters') %>
+                </div>
+                <div class="col-9">
+                    <!-- Wylistowanie istniejących wiadomości -->
+                    <% news.forEach(oneNews => { %>
+                    <div class="card bg-light mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3">
+                                    <!-- dzięki fluid nie rozciągnie sie -->
+                                    <img src="/uploads/<%- oneNews.image %>" class="img-fluid" alt="zdjecie wiadomosci">
+                                </div>
+                                <div class="col-9">
+                                    <p class="h3 mb-3"><%= oneNews.mainTitle %></p>
+                                    <p><b>Autor:</b> <%= oneNews.author?.nick %></p>
+                                    <p><b>Komentarzy:</b> <%= oneNews.comments.length %></p>
+                                    
+                                    <a href="/wiadomosci/<%= oneNews.slug %>" class="btn btn-primary">Zobacz</a>
+
+                                    <!-- Jeśli user jest zalogowany -->
+                                    <% if (user) { %>
+
+                                        <!-- Sprawdzamy czy user jest autorem aktualności -->
+                                        <% if (oneNews.author.nick == user.nick) { %>
+                                            <a href="/zalogowany/wiadomosci/<%= oneNews.slug %>/edytuj" class="btn btn-warning">Edytuj</a>
+                                            <a href="/zalogowany/wiadomosci/<%= oneNews.slug %>/usun" 
+                                                onclick="return confirm('Czy jesteś pewien?')"
+                                                class="btn btn-danger">Usuń</a>
+                                        <% } %>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+
+            <%- include('partials/pagination') %>
+        </form>
+    </div>
+</div>

@@ -48,21 +48,21 @@ nav .navbar-logo {
   width: 50px;
 }
 
-form {
+.form-auth {
   margin: auto;
 }
 
-form h1 {
+.form-auth h1 {
   text-align: center;
 }
 
-form .form-control {
+.form-auth .form-control {
   margin: auto;
   width: 50%;
   border-color: black;
 }
 
-form button {
+.form-auth button {
   width: 30%;
 }
 

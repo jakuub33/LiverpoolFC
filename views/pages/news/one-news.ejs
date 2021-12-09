@@ -1,0 +1,27 @@
+<% if (name) { %>
+
+    <!-- dzięki fluid nie rozciągnie sie -->
+    <img src="/uploads/<%- oneNews.image %>" class="img-fluid" alt="zdjecie wiadomosci">
+
+    <h1><%= oneNews.mainTitle %></h1> <!-- Użycie zmiennej przekazanej w kontrolerze -->
+    <p><b>Autor:</b> <%= oneNews.author %></p>
+    <p><%= oneNews.text %></p>
+
+    <h3>Komentarze:</h3> 
+    <!-- Wylistowanie komentarzy należących do danej aktualności -->
+    <% oneNews.comments.forEach(comment => { %>     
+        <p><b><%= comment.author %> : </b></p>           
+        <p><%= comment.text %></p>           
+        <!-- Nowa linia, jak nie zadziała to pokombinuj z '\n' lub '\r' -->
+        <br>
+    <% }); %>
+    
+    <!-- Sprawdzamy czy user jest zalogowany -->
+    <% if (user) { %> 
+        <!-- Zrobic dodawanie nowych komentarzy -->
+        <button class="btn btn-success">Skomentuj</button>
+    <% } %>
+
+<% } else { %>
+    <h1>Nie ma takiej firmy!</h1>
+<% } %>
