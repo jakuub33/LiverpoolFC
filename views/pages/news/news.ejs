@@ -17,34 +17,40 @@
                 <div class="col-9">
                     <!-- Wylistowanie istniejących wiadomości -->
                     <% news.forEach(oneNews => { %>
-                    <div class="card bg-light mb-3">
-                        <div class="card-body">
+                    <div class="card bg-light text-black mb-3">
+                        <!-- <div class="card-body"> -->
                             <div class="row">
-                                <div class="col-3">
-                                    <!-- dzięki fluid nie rozciągnie sie -->
-                                    <img src="/uploads/<%- oneNews.image %>" class="img-fluid" alt="zdjecie wiadomosci">
-                                </div>
-                                <div class="col-9">
-                                    <p class="h3 mb-3"><%= oneNews.mainTitle %></p>
-                                    <p><b>Autor:</b> <%= oneNews.author?.nick %></p>
-                                    <p><b>Komentarzy:</b> <%= oneNews.comments.length %></p>
-                                    
-                                    <a href="/wiadomosci/<%= oneNews.slug %>" class="btn btn-primary">Zobacz</a>
-
-                                    <!-- Jeśli user jest zalogowany -->
-                                    <% if (user) { %>
-
-                                        <!-- Sprawdzamy czy user jest autorem aktualności -->
-                                        <% if (oneNews.author.nick == user.nick) { %>
-                                            <a href="/zalogowany/wiadomosci/<%= oneNews.slug %>/edytuj" class="btn btn-warning">Edytuj</a>
-                                            <a href="/zalogowany/wiadomosci/<%= oneNews.slug %>/usun" 
-                                                onclick="return confirm('Czy jesteś pewien?')"
-                                                class="btn btn-danger">Usuń</a>
-                                        <% } %>
+                                <div class="col-5">
+                                    <!-- Jeśli istnieje zdjęcie to je pokaż -->
+                                    <% if (oneNews.image) { %>
+                                        <!-- dzięki fluid nie rozciągnie sie -->
+                                        <img src="/uploads/<%- oneNews.image %>" class="img-fluid rounded-start" alt="zdjecie wiadomosci">                                        
                                     <% } %>
                                 </div>
+                                <div class="col-6">
+                                    <div class="card-body">
+
+                                        <p class="h3 mb-3"><%= oneNews.mainTitle %></p>
+                                        <p><b>Autor:</b> <%= oneNews.author?.nick %></p>
+                                        <p><b>Komentarzy:</b> <%= oneNews.comments.length %></p>
+                                        
+                                        <a href="/wiadomosci/<%= oneNews.slug %>" class="btn btn-primary">Zobacz</a>
+    
+                                        <!-- Jeśli user jest zalogowany -->
+                                        <% if (user) { %>
+    
+                                            <!-- Sprawdzamy czy user jest autorem aktualności -->
+                                            <% if (oneNews.author.nick == user.nick) { %>
+                                                <a href="/zalogowany/wiadomosci/<%= oneNews.slug %>/edytuj" class="btn btn-warning">Edytuj</a>
+                                                <a href="/zalogowany/wiadomosci/<%= oneNews.slug %>/usun" 
+                                                    onclick="return confirm('Czy jesteś pewien?')"
+                                                    class="btn btn-danger">Usuń</a>
+                                            <% } %>
+                                        <% } %>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        <!-- </div> -->
                     </div>
                     <% }); %>
                 </div>

@@ -1,27 +1,53 @@
-<% if (name) { %>
+<div class="container">
+    <% if (oneNews.mainTitle) { %>
+        <div class="card">            
 
-    <!-- dzięki fluid nie rozciągnie sie -->
-    <img src="/uploads/<%- oneNews.image %>" class="img-fluid" alt="zdjecie wiadomosci">
-
-    <h1><%= oneNews.mainTitle %></h1> <!-- Użycie zmiennej przekazanej w kontrolerze -->
-    <p><b>Autor:</b> <%= oneNews.author %></p>
-    <p><%= oneNews.text %></p>
-
-    <h3>Komentarze:</h3> 
-    <!-- Wylistowanie komentarzy należących do danej aktualności -->
-    <% oneNews.comments.forEach(comment => { %>     
-        <p><b><%= comment.author %> : </b></p>           
-        <p><%= comment.text %></p>           
-        <!-- Nowa linia, jak nie zadziała to pokombinuj z '\n' lub '\r' -->
-        <br>
-    <% }); %>
-    
-    <!-- Sprawdzamy czy user jest zalogowany -->
-    <% if (user) { %> 
-        <!-- Zrobic dodawanie nowych komentarzy -->
-        <button class="btn btn-success">Skomentuj</button>
-    <% } %>
-
-<% } else { %>
-    <h1>Nie ma takiej firmy!</h1>
-<% } %>
+            <!-- Jeśli istnieje zdjęcie to je pokaż -->
+            <% if (oneNews.image) { %>
+                <!-- dzięki fluid nie rozciągnie sie -->
+                <img src="/uploads/<%- oneNews.image %>" class="card-img-top" alt="zdjecie wiadomosci">        
+            <% } %>
+            
+            <div class="card-body">
+                <h1><%= oneNews.mainTitle %></h1> <!-- Użycie zmiennej przekazanej w kontrolerze -->
+                <p><b>Autor:</b> <%= oneNews.author.nick %></p>
+                <p><%= oneNews.text %></p>
+                <br>
+                <h3 class="mt-5">Komentarze:</h3> 
+                <!-- Wylistowanie komentarzy należących do danej aktualności -->
+                <% oneNews.comments.forEach(comment => { %>   
+                    <div class="card card-body">  
+                        <p><b><%= comment.author %> : </b>
+                        <br>           
+                        <%= comment.text %></p>           
+                        <!-- Nowa linia, jak nie zadziała to pokombinuj z '\n' lub '\r' -->
+                        <br>
+                    </div>
+                <% }); %>
+            </div> 
+        </div> 
+        <!-- Sprawdzamy czy user jest zalogowany -->
+        <% if (user) { %> 
+            <div class="card card-body mt-5">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Treść komentarza:</label>
+                        <input
+                            type="text"
+                            name="text"
+                            value="<%= form.text %>"
+                            class="form-control"
+                        />
+                        <% if (errors?.text) { %>
+                        <div class="invalid-feedback"><%= errors.text.message %></div>
+                        <% } %>
+                    </div>
+                    <button class="btn btn-success">Skomentuj</button>
+                </form>
+            </div>
+        <% } %>     
+                
+    <% } else { %>
+        <h1>Nie ma takiej firmy!</h1>
+    <% } %>       
+</div>

@@ -2,7 +2,8 @@
 
 const mongoose = require('mongoose'); //pobieramy mongoose
 const Schema = mongoose.Schema; //pobieramy Schema
-const { engCharacters } = require('../validators'); //walidacje do konkretnych pól w osobnym pliku
+const uniqueValidator = require('mongoose-unique-validator'); //lib do walidacji unique
+const { checkSlug } = require('../validators'); //walidacje do konkretnych pól w osobnym pliku
 
 //Stworzenie modelu, na podstawie, którego powstanie kolekcja
 const newsSchema = new Schema({
@@ -11,12 +12,16 @@ const newsSchema = new Schema({
         required: [true, 'Tytuł jest wymagany!'],
         minLength: [3, 'Minimalna liczba znaków to 3'],
         maxLength: [40, 'Maksymalna liczba znaków to 40!'],
-        validate: [engCharacters, 'Znaki specjalne są niedozwolone!'],
     },
     slug: {
         type: String,
+        required: [true, 'Tytuł jest wymagany!'],
+        minLength: [3, 'Minimalna liczba znaków to 3'],
+        maxLength: [20, 'Maksymalna liczba znaków to 20!'],
         trim: true,
         lowercase: true,
+        unique: true,
+        validate: [checkSlug, 'Znaki specjalne są niedozwolone!'],
     },
     image: {
         type: String,
@@ -33,23 +38,15 @@ const newsSchema = new Schema({
     },
     comments: [{
         type: mongoose.Types.ObjectId,
-        ref: 'Comments',
+        ref: 'Comment',
     }],
 });
 //##############################################################
 //Operacje po wpisaniu danych przez usera, na których możemy dokonać zmiany przed dodaniem do bd
 
-//przypisanie name do slug
-newsSchema.pre('save', function (next) {
-    const oneNews = this;
-    //jeśli liga nie jest dodawana/modyfikowana to nic nie rób, a jeśli tak to przypisz nazwe ligi do slug
-    if (!oneNews.isModified('name')) {
-        return next();
-    } else {
-        //slug nie może mieć spacji
-        oneNews.slug = oneNews.name.replace(/\s+/g, '');
-        next();
-    }
+//Sprawdzanie unikalności sluga
+newsSchema.plugin(uniqueValidator, {
+    message: 'Ten {PATH} już istnieje!'
 });
 
 const News = mongoose.model('News', newsSchema);

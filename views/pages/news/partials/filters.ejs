@@ -3,13 +3,29 @@
     <select name="sort" id="sort" class="form-control">
         <option value="">Domyślnie</option>
         <!-- niżej: if a-z is selected then use it as selected -->
-        <option value="name|asc" <%- query.sort === 'name|asc' ? 'selected' : '' %>>
+        <option value="mainTitle|asc" <%- query.sort === 'mainTitle|asc' ? 'selected' : '' %>>
             A-z
         </option>
-        <option value="name|desc" <%- query.sort === 'name|desc' ? 'selected' : '' %>>
+        <option value="mainTitle|desc" <%- query.sort === 'mainTitle|desc' ? 'selected' : '' %>>
             Z-a
-        </option>        
+        </option>
+        <!-- <option value="commentsCount|asc" <%- query.sort === 'commentsCount|asc' ? 'selected' : '' %>>
+            Graczy (rosnąco)
+        </option>
+        <option value="commentsCount|desc" <%- query.sort === 'commentsCount|desc' ? 'selected' : '' %>>
+            Graczy (malejąco)
+        </option> -->
     </select>    
 </div>
+
+<!-- <div class="mb-3">
+    <label for="countmin" class="form-label">Liczba graczy (min)</label>
+    <input type="number" value="<%= query.countmin %>" class="form-control" id="countmin" name="countmin">
+</div>
+
+<div class="mb-3">
+    <label for="countmax" class="form-label">Liczba graczy (max)</label>
+    <input type="number" value="<%= query.countmax %>" class="form-control" id="countmax" name="countmax">
+</div> -->
 
 <button class="btn btn-primary mt-3">Zastosuj</button>

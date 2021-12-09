@@ -10,8 +10,9 @@ const commentSchema = new Schema({
         type: String,
         required: [true, 'Tekst jest wymagany']
     },
+    //referencja z użyciem nicku, a nie ID, a było łatwiej było wskazać kto napisał komentarz
     author: {
-        type: mongoose.Types.ObjectId,
+        type: String,
         required: true,
         ref: 'User',
     }

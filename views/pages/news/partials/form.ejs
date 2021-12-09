@@ -18,11 +18,27 @@
                 <div class="invalid-feedback"><%= errors.mainTitle.message %></div>    
             <% } %>
         </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">Slug/adres linku *</label>
+            <!-- niżej: Dzięki value, po złym wypełnieniu pól, wartości z pól nie znikają -->
+            <input 
+                type="text" 
+                name="slug"
+                maxlength="20"
+                value="<%= form.slug %>" 
+                class="form-control <%= errors?.slug ? 'is-invalid' : '' %>" required>   
+            <!-- sprawdzamy czy konkretny błąd tego pola istnieje, jeśli nie ma to wartość jest null i nie wchodzi do ifa -->
+            <% if (errors?.slug) { %>  
+                <div class="invalid-feedback"><%= errors.slug.message %></div>    
+            <% } %>
+        </div>
         
         <% if (form.image) { %>
             <div class="row">
                 <div class="col">
                     <img src="/uploads/<%- form.image %>" class="img-fluid" alt="zdjecie aktualnosci">
+                    <br>
                     <a href="/zalogowany/wiadomosci/<%- form.slug %>/usun-zdjecie" class="btn btn-sm btn-danger">Usuń</a>
                 </div>
             </div>

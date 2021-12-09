@@ -41,9 +41,12 @@ router.get('/zalogowany/wiadomosci/:name/edytuj', NewsController.showEditNewsFor
 // dodajemy middleware, dodajemy jeden plik o nazwie image (nazwa z form)
 router.post('/zalogowany/wiadomosci/:name/edytuj', upload.single('image'), NewsController.editNews);
 
-// USUWANIE WIADOMOŚCI I ZDJECIA
+// USUWANIE AKTUALNOŚCI I ZDJECIA
 router.get('/zalogowany/wiadomosci/:name/usun', NewsController.deleteNews); 
 router.get('/zalogowany/wiadomosci/:name/usun-zdjecie', NewsController.deleteImage);
+
+// DODANIE KOMENTARZA
+router.post('/wiadomosci/:name', NewsController.commentButton); //obsługa formularza wysłanego za pomocą POST
 
 // BŁĘDNE ADRESY
 router.get('*', PageController.showNotFound);

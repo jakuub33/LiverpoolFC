@@ -16,12 +16,7 @@ module.exports = {
     // checkDuration(duration) {
     //     const re = /^[0-9\-]+$/;
     //     return re.test(duration);
-    // },
-
-    engCharacters(name) {
-        const re = /^[a-zA-Z0-9 ]*$/;
-        return re.test(name);
-    },
+    // },    
 
     checkScore(score) {
         const re = /^[0-9\:]+$/;
