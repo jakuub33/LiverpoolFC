@@ -104,13 +104,20 @@ class NewsController {
 
     // USUNIĘCIE KOMENTARZA
     async deleteComment(req, res) {
-        const { name } = req.params;
+        const { name, comId } = req.params;
+
+        const oneNews = await News.findOne({ slug: name }); //wyszukanie konkretnej aktualnosci
+        oneNews.comments.pull(comId); //usunięcie konkretnego komentarza po id
 
         try {  
-            await Comment.deleteOne({ author: req.session.user.nick }); //usuniecie komentarza
+            await oneNews.save(); //Usuniecie komentarza z aktualnosci
+            await Comment.deleteOne({ _id: comId }); //usuniecie komentarza z kolekcji Comments
+
             res.redirect(`/wiadomosci/${name}`);            
         } catch (e) {
-            //błędy nieprzewidziane
+            console.log('błedy usuwania komentarza!!!');
+            console.log(e);
+            //błędy nie powinny wystąpic
         }
     }
 

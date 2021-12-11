@@ -19,7 +19,7 @@
                 <% if (!oneNews.comments.length == 0) { %>
                     <!-- Wylistowanie komentarzy -->
                     <!-- form jakby user chciał usunąć swój komentarz -->
-                    <form method="POST" action="/wiadomosci/<%= oneNews.slug %>/usun-komentarz">
+                    <form method="GET">
                         <% oneNews.comments.forEach(comment => { %>   
                             <div class="card border-dark card-body mb-2">  
                                 <p><b><%= comment.author %> : </b>
@@ -28,9 +28,12 @@
 
                                 <!-- Sprawdzm czy user jest zalogowany i jest autorem komentarza -->
                                 <% if (user && comment.author == user.nick) { %>
-                                    <button onclick="return confirm('Czy jesteś pewien?')" 
+                                    <!-- Przekazuje slug aktualnosci i id komentarza -->
+                                    <a href="/zalogowany/wiadomosci/<%= oneNews.slug %>/<%= comment._id %>/usun-komentarz" 
+                                        onclick="return confirm('Czy jesteś pewien?')"
                                         class="btn btn-danger position-absolute bottom-0 end-0 m-2">Usuń
-                                    </button>                                
+                                    </a>
+                                                                  
                                 <% } %>  
                             </div>
                         <% }); %>
@@ -43,7 +46,7 @@
         <!-- Sprawdzamy czy user jest zalogowany -->
         <% if (user) { %> 
             <div class="card border-dark card-body mb-5">
-                <form method="POST">
+                <form method="POST" action="/zalogowany/wiadomosci/<%= oneNews.slug %>">
                     <div class="mb-3">
                         <label for="" class="form-label">Nowy komentarz:</label>
                         <textarea

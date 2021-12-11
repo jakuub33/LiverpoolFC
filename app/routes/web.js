@@ -46,8 +46,8 @@ router.get('/zalogowany/wiadomosci/:name/usun', NewsController.deleteNews);
 router.get('/zalogowany/wiadomosci/:name/usun-zdjecie', NewsController.deleteImage);
 
 // KOMENTARZE
-router.post('/wiadomosci/:name', NewsController.commentButton); //obsługa formularza wysłanego za pomocą POST
-router.post('/wiadomosci/:name/usun-komentarz', NewsController.deleteComment);
+router.post('/zalogowany/wiadomosci/:name', NewsController.commentButton); //obsługa formularza wysłanego za pomocą POST
+router.get('/zalogowany/wiadomosci/:name/:comId/usun-komentarz', NewsController.deleteComment);
 
 // BŁĘDNE ADRESY
 router.get('*', PageController.showNotFound);
