@@ -50,12 +50,10 @@
 
         <div class="mb-3">
             <label for="" class="form-label">Treść *</label>
-            <input
-                type="text"
-                name="text"
-                value="<%= form.text %>"
-                class="form-control"
-            />
+            <textarea
+                name="text" 
+                cols="30" rows="10" 
+                class="form-control" required><%= form.text %></textarea>            
             <% if (errors?.text) { %>
             <div class="invalid-feedback"><%= errors.text.message %></div>
             <% } %>

@@ -1,6 +1,6 @@
 <div class="container">
     <% if (oneNews.mainTitle) { %>
-        <div class="card">            
+        <div class="card border-dark mb-5">            
 
             <!-- Jeśli istnieje zdjęcie to je pokaż -->
             <% if (oneNews.image) { %>
@@ -13,31 +13,43 @@
                 <p><b>Autor:</b> <%= oneNews.author.nick %></p>
                 <p><%= oneNews.text %></p>
                 <br>
+
                 <h3 class="mt-5">Komentarze:</h3> 
-                <!-- Wylistowanie komentarzy należących do danej aktualności -->
-                <% oneNews.comments.forEach(comment => { %>   
-                    <div class="card card-body">  
-                        <p><b><%= comment.author %> : </b>
-                        <br>           
-                        <%= comment.text %></p>           
-                        <!-- Nowa linia, jak nie zadziała to pokombinuj z '\n' lub '\r' -->
-                        <br>
-                    </div>
-                <% }); %>
+                <!-- Sprawdzam czy są komentarze dla danej aktualności -->
+                <% if (!oneNews.comments.length == 0) { %>
+                    <!-- Wylistowanie komentarzy -->
+                    <!-- form jakby user chciał usunąć swój komentarz -->
+                    <form method="POST" action="/wiadomosci/<%= oneNews.slug %>/usun-komentarz">
+                        <% oneNews.comments.forEach(comment => { %>   
+                            <div class="card border-dark card-body mb-2">  
+                                <p><b><%= comment.author %> : </b>
+                                <br>           
+                                <%= comment.text %></p>
+
+                                <!-- Sprawdzm czy user jest zalogowany i jest autorem komentarza -->
+                                <% if (user && comment.author == user.nick) { %>
+                                    <button onclick="return confirm('Czy jesteś pewien?')" 
+                                        class="btn btn-danger position-absolute bottom-0 end-0 m-2">Usuń
+                                    </button>                                
+                                <% } %>  
+                            </div>
+                        <% }); %>
+                    </form>
+                <% } else { %>
+                    <p>Brak komentarzy.</p>
+                <% } %>                
             </div> 
         </div> 
         <!-- Sprawdzamy czy user jest zalogowany -->
         <% if (user) { %> 
-            <div class="card card-body mt-5">
+            <div class="card border-dark card-body mb-5">
                 <form method="POST">
                     <div class="mb-3">
-                        <label for="" class="form-label">Treść komentarza:</label>
-                        <input
-                            type="text"
-                            name="text"
-                            value="<%= form.text %>"
-                            class="form-control"
-                        />
+                        <label for="" class="form-label">Nowy komentarz:</label>
+                        <textarea
+                            name="text" 
+                            cols="30" rows="10" 
+                            class="form-control" required><%= form.text %></textarea>                        
                         <% if (errors?.text) { %>
                         <div class="invalid-feedback"><%= errors.text.message %></div>
                         <% } %>

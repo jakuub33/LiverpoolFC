@@ -157,10 +157,15 @@ nav .navbar-logo {
 /* FOOTER */
 footer {
   position: absolute;
+  left: 0;
   bottom: 0;
   width: 100%;
   height: 2.5rem;
   color: white;
+}
+
+.contact {
+  margin-top: 80px;
 }
 
 .contact .contact-bg {

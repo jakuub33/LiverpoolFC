@@ -17,14 +17,14 @@
                 <div class="col-9">
                     <!-- Wylistowanie istniejących wiadomości -->
                     <% news.forEach(oneNews => { %>
-                    <div class="card bg-light text-black mb-3">
+                    <div class="card bg-light text-black border-dark mb-3">
                         <!-- <div class="card-body"> -->
                             <div class="row">
                                 <div class="col-5">
                                     <!-- Jeśli istnieje zdjęcie to je pokaż -->
                                     <% if (oneNews.image) { %>
                                         <!-- dzięki fluid nie rozciągnie sie -->
-                                        <img src="/uploads/<%- oneNews.image %>" class="img-fluid rounded-start" alt="zdjecie wiadomosci">                                        
+                                        <img src="/uploads/<%- oneNews.image %>" class="img-fluid h-100" alt="zdjecie wiadomosci">                                        
                                     <% } %>
                                 </div>
                                 <div class="col-6">

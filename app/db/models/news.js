@@ -17,7 +17,7 @@ const newsSchema = new Schema({
         type: String,
         required: [true, 'Tytuł jest wymagany!'],
         minLength: [3, 'Minimalna liczba znaków to 3'],
-        maxLength: [20, 'Maksymalna liczba znaków to 20!'],
+        // maxLength: [20, 'Maksymalna liczba znaków to 20!'],
         trim: true,
         lowercase: true,
         unique: true,

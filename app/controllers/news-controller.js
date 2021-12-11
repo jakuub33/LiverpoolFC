@@ -78,7 +78,7 @@ class NewsController {
         });
     }
 
-    // KOMENTOWANIE
+    // DODANIE KOMENTARZA
     async commentButton(req, res) {
         const { name } = req.params;
         const oneNews = await News.findOne({ slug: name });
@@ -99,6 +99,18 @@ class NewsController {
             res.redirect(`/wiadomosci/${name}`); 
         } catch (e) {            
             console.log(e);
+        }
+    }
+
+    // USUNIĘCIE KOMENTARZA
+    async deleteComment(req, res) {
+        const { name } = req.params;
+
+        try {  
+            await Comment.deleteOne({ author: req.session.user.nick }); //usuniecie komentarza
+            res.redirect(`/wiadomosci/${name}`);            
+        } catch (e) {
+            //błędy nieprzewidziane
         }
     }
 

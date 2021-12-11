@@ -165,14 +165,16 @@ nav {
 /* FOOTER */
 footer {
     position: absolute;
+    left: 0;
     bottom: 0;
     width: 100%;
     height: 2.5rem;
-    // margin-top: 500px;
     color: white;
 }
 
 .contact {
+
+    margin-top: 80px;
 
     .contact-bg {
         position: relative;
