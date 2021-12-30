@@ -1,34 +1,25 @@
-<div class="container">
-    <h1 class="scoreBoardHeader">Tabela<span id="leagueName"></span></h1>
-
-    <div class="dropdown text-center mt-3">
-        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Wybierz ligę
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <button class="dropdown-item" data-league-id="PL">Premier League</button>
-            <button class="dropdown-item" data-league-id="SA">Serie A</button>
-            <button class="dropdown-item" data-league-id="BL1">Bundesliga</button>
-            <button class="dropdown-item" data-league-id="PD">La Liga</button>
-        </div>
-    </div>
+<div class="container statistics">   
+    <a href="#scoreBoard" class="btn btn-dark p-3">Terminarz</a>
+    <a href="#leagueTable" class="btn btn-dark p-3">Tabela</a>
 
     <div class="scoreBoard" id="scoreBoard">
+        <h1 id="scoreBoardHeader" class="scoreBoardHeader" style="display: none;">Terminarz</h1>
         <div id="finishedMatchesBody">
+            <h4 id="scoreBoardHeaderFin" style="display: none;">Mecze odbyte</h3>
             <div class="finishedMatchesList" id="finishedMatchesList"></div>
         </div>
         <div id="UpcomingMatchesBody">
+            <h4 id="scoreBoardHeaderSche" style="display: none;">Mecze zaplanowane</h3>
             <div class="UpcomingMatchesList" id="UpcomingMatchesList"></div>
         </div>
     </div>
 
     <div class="leagueTable" id="leagueTable">
-        <h1>Tabela ligowa</h1>
+        <h1 class="scoreBoardHeader">Tabela ligowa</h1>
         <table class="table table-dark table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Lp</th>
+                    <th scope="col">Pozycja</th>
                     <th scope="col"></th>
                     <th scope="col">Drużyna</th>
                     <th scope="col">M</th>
@@ -36,6 +27,7 @@
                     <th scope="col">Z</th>
                     <th scope="col">R</th>
                     <th scope="col">P</th>
+                    <th scope="col">B</th>
                 </tr>
             </thead>
             <tbody></tbody>

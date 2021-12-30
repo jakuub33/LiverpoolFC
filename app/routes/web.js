@@ -14,8 +14,7 @@ router.get('/wiadomosci', NewsController.showNews);
 router.get('/wiadomosci/:name', NewsController.showOneNews);
 
 // TABELA I TERMINARZ
-router.get('/terminarz', PageController.showSchedule);
-router.get('/tabela', PageController.showTable);
+router.get('/statystyki', PageController.showStatistics);
 
 // REJESTRACJA
 router.get('/zarejestruj', UserController.showRegister); // wyświetlanie formularza

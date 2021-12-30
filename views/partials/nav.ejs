@@ -18,15 +18,10 @@
           <!-- Inny zapis ifa (warunek ? operacja-true : false) -->
           <!-- Czyli jeśli url zawiera 'firmy' to nadaj klase active, if not to nic nie rób -->
           <a class="nav-link <%- url.includes('/wiadomosci') ? 'active' : '' %>" href="/wiadomosci">Wiadomości</a>
-        </li>
+        </li>        
         <li>
           <div class="nav-item">
-            <a class="nav-link <%- url === '/tabela' && 'active' %>" href="/tabela">Tabela</a>
-          </div>
-        </li>
-        <li>
-          <div class="nav-item">
-            <a class="nav-link <%- url === '/terminarz' && 'active' %>" href="/terminarz">Terminarz</a>
+            <a class="nav-link <%- url === '/statystyki' && 'active' %>" href="/statystyki">Statystyki</a>
           </div>
         </li>
         <li class="nav-item dropdown">

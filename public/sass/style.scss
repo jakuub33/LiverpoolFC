@@ -110,56 +110,79 @@ nav {
     }
 }
 
-.scoreBoard {
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-}
+// STATISTICS
+.statistics {
+    a {
+        width: 49%;
+    }
 
-.scoreBoardHeader {
-    text-align: center;
-    padding-top: 2rem;
-}
-
-.scoreBoard h4:nth-of-type(2n) {
-    margin-top: 1rem;
-}
-
-.finishedMatchesList,
-.UpcomingMatchesList {
-    max-height: 500px;
-    overflow-y: scroll;
-    -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
-    -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
-    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
-    font-size: 18px;
-    width: 95%;
-}
-
-.table {
-    width: 45%;
-    margin-top: 1rem;
-    -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
-    -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
-    box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
-}
-
-.leagueTable {
-    display: none;
-}
-
-.leagueTable h1 {
-    margin-top: 5rem;
-}
-
-.teamCrest {
-    height: 35px;
-    width: 40px;
-}
-
-.list-group-item-dark {
-    color: white;
-    background-color: #212529;
+    .scoreBoard {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .scoreBoardHeader {
+        text-align: center;
+        /* padding-top: 2rem; */
+        margin: 2rem 0rem;
+    }
+    
+    .scoreBoard h4:nth-of-type(2n) {
+        margin-top: 1rem;
+    }
+    
+    .finishedMatchesList,
+    .UpcomingMatchesList {
+        max-height: 500px;
+        overflow-y: scroll;
+        -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        font-size: 18px;
+        width: 100%;
+        margin-bottom: 3rem;
+    }
+    
+    .tableStandings {
+        width: 45%;
+        margin-top: 1rem;
+        -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+    }
+    
+    .table{
+        -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+    }
+    
+    .leagueTable {
+        display: none;
+    }
+    
+    .leagueTable h1 {
+        margin-top: 5rem;
+    }
+    
+    .teamCrest {
+        height: 35px;
+        width: 40px;
+    }
+    
+    .teamNames{
+        margin-left: 1rem;
+        color: #198754;
+    }
+    
+    .matchDates{
+        margin-right: 3rem;
+    }
+    
+    .list-group-item-dark {
+        color: white;
+        background-color: #212529;
+    }
 }
 
 /* FOOTER */

@@ -100,56 +100,76 @@ nav .navbar-logo {
   border-radius: 10%;
 }
 
-.scoreBoard {
-  margin-top: 2rem;
+.statistics a {
+  width: 49%;
+}
+
+.statistics .scoreBoard {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.scoreBoardHeader {
+.statistics .scoreBoardHeader {
   text-align: center;
-  padding-top: 2rem;
+  /* padding-top: 2rem; */
+  margin: 2rem 0rem;
 }
 
-.scoreBoard h4:nth-of-type(2n) {
+.statistics .scoreBoard h4:nth-of-type(2n) {
   margin-top: 1rem;
 }
 
-.finishedMatchesList,
-.UpcomingMatchesList {
+.statistics .finishedMatchesList,
+.statistics .UpcomingMatchesList {
   max-height: 500px;
   overflow-y: scroll;
   -webkit-box-shadow: 8px 8px 24px 0px #42445a;
   box-shadow: 8px 8px 24px 0px #42445a;
   font-size: 18px;
-  width: 95%;
+  width: 100%;
+  margin-bottom: 3rem;
 }
 
-.table {
+.statistics .tableStandings {
   width: 45%;
   margin-top: 1rem;
   -webkit-box-shadow: 8px 8px 24px 0px #42445a;
   box-shadow: 8px 8px 24px 0px #42445a;
 }
 
-.leagueTable {
+.statistics .table {
+  -webkit-box-shadow: 8px 8px 24px 0px #42445a;
+  box-shadow: 8px 8px 24px 0px #42445a;
+}
+
+.statistics .leagueTable {
   display: none;
 }
 
-.leagueTable h1 {
+.statistics .leagueTable h1 {
   margin-top: 5rem;
 }
 
-.teamCrest {
+.statistics .teamCrest {
   height: 35px;
   width: 40px;
 }
 
-.list-group-item-dark {
+.statistics .teamNames {
+  margin-left: 1rem;
+  color: #198754;
+}
+
+.statistics .matchDates {
+  margin-right: 3rem;
+}
+
+.statistics .list-group-item-dark {
   color: white;
   background-color: #212529;
 }
