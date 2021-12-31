@@ -1,0 +1,48 @@
+<div class="container">
+    <% if (chat.nameChat) { %>
+        <div class="card border-dark mb-5">       
+            
+            <div class="card-body">
+                <h1>Chat: <%= chat.nameChat %></h1> <!-- Użycie zmiennej przekazanej w kontrolerze -->                             
+                <br>
+                <h3 class="mt-5 text-center">Wiadomości:</h3> 
+                <!-- Sprawdzam czy są komentarze dla danej aktualności -->
+                <% if (!chat.messages.length == 0) { %>
+
+                    <!-- Wylistowanie wiadomości -->                    
+                    <% chat.messages.forEach(message => { %>   
+                        <div class="card border-dark card-body mb-2">  
+                            <p><b><%= message.author %> : </b>
+                            <br>           
+                            <%= message.text %></p>                                
+                        </div>
+                    <% }); %>
+                    
+                <% } else { %>
+                    <p>Brak wiadomości.</p>
+                <% } %>                
+            </div> 
+        </div> 
+        <!-- Sprawdzamy czy user jest zalogowany -->
+        <% if (user) { %> 
+            <div class="card border-dark card-body mb-5">
+                <form method="POST" action="/zalogowany/chat/<%= chat.slug %>">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Nowa wiadomość:</label>
+                        <textarea
+                            name="text" 
+                            cols="30" rows="1" 
+                            class="form-control" required><%= form.text %></textarea>                        
+                        <% if (errors?.text) { %>
+                        <div class="invalid-feedback"><%= errors.text.message %></div>
+                        <% } %>
+                    </div>
+                    <button class="btn btn-success">Wyślij</button>
+                </form>
+            </div>
+        <% } %>     
+                
+    <% } else { %>
+        <h1>Dany chat nie istnieje!</h1>
+    <% } %>       
+</div>

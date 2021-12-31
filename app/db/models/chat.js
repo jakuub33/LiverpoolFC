@@ -6,10 +6,10 @@ const uniqueValidator = require('mongoose-unique-validator'); //lib do walidacji
 const { checkSlug } = require('../validators'); //walidacje do konkretnych pól w osobnym pliku
 
 //Stworzenie modelu, na podstawie, którego powstanie kolekcja
-const newsSchema = new Schema({
-    mainTitle: {
+const chatSchema = new Schema({
+    nameChat: {
         type: String,
-        required: [true, 'Tytuł jest wymagany!'],
+        required: [true, 'Nazwa chatu jest wymagana!'],
         minLength: [3, 'Minimalna liczba znaków to 3'],
         maxLength: [40, 'Maksymalna liczba znaków to 40!'],
     },
@@ -17,38 +17,29 @@ const newsSchema = new Schema({
         type: String,
         required: [true, 'Slug jest wymagany!'],
         minLength: [3, 'Minimalna liczba znaków to 3'],
-        // maxLength: [20, 'Maksymalna liczba znaków to 20!'],
         trim: true,
         lowercase: true,
         unique: true,
         validate: [checkSlug, 'Znaki specjalne są niedozwolone!'],
-    },
-    image: {
-        type: String,
-    },
-    text: {
-        type: String,
-        required: [true, 'Tekst jest wymagany'],
-        minLength: [10, 'Minimalna liczba znaków to 10'],
     },
     author: {
         type: mongoose.Types.ObjectId,
         required: true,
         ref: 'User',
     },
-    comments: [{
+    messages: [{
         type: mongoose.Types.ObjectId,
-        ref: 'Comment',
+        ref: 'Message',
     }],
 });
 //##############################################################
 //Operacje po wpisaniu danych przez usera, na których możemy dokonać zmiany przed dodaniem do bd
 
 //Sprawdzanie unikalności sluga
-newsSchema.plugin(uniqueValidator, {
+chatSchema.plugin(uniqueValidator, {
     message: 'Ten {PATH} już istnieje!'
 });
 
-const News = mongoose.model('News', newsSchema);
+const Chat = mongoose.model('Chat', chatSchema);
 
-module.exports = News;
+module.exports = Chat;

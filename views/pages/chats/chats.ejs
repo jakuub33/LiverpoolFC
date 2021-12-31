@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="card card-body bg-dark text-white">
+        <h1 class="text-center">Pokoje z chatami:</h1>
+
+        <% if (user) { %>
+        <a href="/zalogowany/chat/dodaj" class="btn btn-success mb-3">Dodaj nowy chat</a>
+        <% } %>
+
+        <!-- Aby sort nie gryzł się z query w slug to trzeba to zrobić w jednym formularzu -->
+        <form method="GET">
+            <%- include('partials/search') %>
+            
+                <!-- Wylistowanie istniejących wiadomości -->
+                <% chats.forEach(chat => { %>
+                    <div class="card bg-light text-black border-dark mb-3">                        
+                        <div class="card-body">
+                            <p class="h3 mb-3"><%= chat.nameChat %></p>
+                            <p><b>Założyciel:</b> <%= chat.author?.nick %></p>
+                            <p><b>Wiadomości:</b> <%= chat.messages.length %></p>
+                            <a href="/chat/<%= chat.slug %>" class="btn btn-primary">Zobacz</a>
+                            
+                            <!-- Jeśli user jest zalogowany -->
+                            <% if (user) { %>
+                                <!-- Sprawdzamy czy user jest założycielem chatu -->
+                                <% if (chat.author.nick == user.nick) { %>
+                                    <a href="/zalogowany/chat/<%= chat.slug %>/edytuj"
+                                        class="btn btn-warning">Edytuj</a>
+                                    <a href="/zalogowany/chat/<%= chat.slug %>/usun"
+                                        onclick="return confirm('Czy jesteś pewien?')" class="btn btn-danger">Usuń</a>
+                                <% } %>
+                            <% } %>
+                        </div>                            
+                    </div>
+                <% }); %>
+                
+            <%- include('partials/pagination') %>
+        </form>
+    </div>
+</div>
