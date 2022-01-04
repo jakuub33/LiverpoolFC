@@ -13,6 +13,12 @@ class PageController {
             title: 'Statystyki'
         });
     }
+    
+    showHistory(req, res) {    
+        res.render('pages/history', {
+            title: 'Historia'
+        });
+    }
 
     //adresy 404
     showNotFound(req, res) {

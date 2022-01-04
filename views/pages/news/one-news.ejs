@@ -22,7 +22,18 @@
                     <form method="GET">
                         <% oneNews.comments.forEach(comment => { %>   
                             <div class="card border-dark card-body mb-2">  
-                                <p><b><%= comment.author %> : </b>
+                                <% 
+                                    let date = comment.date;
+                                    date = date.toISOString(); 
+                                    const month = date.slice(5, 7);
+                                    const day = date.slice(8, 10);
+                                    const hours = parseInt(date.slice(11, 13)) + 1;
+                                    const mins = date.slice(14, 16);
+                                    const secs = date.slice(17, 19);
+                                    date = `${day}.${month} • ${hours}:${mins}:${secs}`; 
+                                %>
+                                <p><b><%= comment.author %></b>
+                                <small class="text-muted"><%= date %></small>
                                 <br>           
                                 <%= comment.text %></p>
 
@@ -51,7 +62,7 @@
                         <label for="" class="form-label">Nowy komentarz:</label>
                         <textarea
                             name="text" 
-                            cols="30" rows="10" 
+                            cols="30" rows="5" 
                             class="form-control" required><%= form.text %></textarea>                        
                         <% if (errors?.text) { %>
                         <div class="invalid-feedback"><%= errors.text.message %></div>

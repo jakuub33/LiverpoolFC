@@ -23,6 +23,9 @@ const newsSchema = new Schema({
         unique: true,
         validate: [checkSlug, 'Znaki specjalne są niedozwolone!'],
     },
+    date: {
+        type: Date,
+    },
     image: {
         type: String,
     },
@@ -31,6 +34,7 @@ const newsSchema = new Schema({
         required: [true, 'Tekst jest wymagany'],
         minLength: [10, 'Minimalna liczba znaków to 10'],
     },
+    //referencje
     author: {
         type: mongoose.Types.ObjectId,
         required: true,

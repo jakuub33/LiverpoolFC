@@ -82,9 +82,11 @@ class NewsController {
     async commentButton(req, res) {
         const { name } = req.params;
         const oneNews = await News.findOne({ slug: name });
+        let date = new Date(); //przypisanie aktualnej daty wysłania komentarza
 
         const comment = new Comment({
             text: req.body.text,
+            date: date,
             author: req.session.user.nick, //przypisanie komentarza do usera
         })
         
@@ -129,10 +131,13 @@ class NewsController {
 
     // TWORZENIE NOWEJ AKTUALNOŚCI
     async createOneNews(req, res) {
+        let date = new Date(); //przypisanie aktualnej daty
+
         //zapisanie wpisanych danych do bd
         const oneNews = new News({
             mainTitle: req.body.mainTitle,            
-            slug: req.body.slug,            
+            slug: req.body.slug,  
+            date: date,          
             text: req.body.text,
             author: req.session.user._id, //przy tworzeniu ligi, przypisz lige do usera
         });

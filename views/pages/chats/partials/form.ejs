@@ -1,50 +1,55 @@
 <!-- Formularz można użyć na kilku stronach. Po co go edytować w każdym miejscu, wystarczy raz -->
 <div class="container">
-    <form method="POST">
-        <!-- wyżej: action="" to link na który wysyłamy formularz, powinien być taki jak link formularza, jak usuniemy pole action   to wezmie domyslnie aktualny adres  -->
-        <div class="mb-3">
-            <label for="" class="form-label">Nazwa *</label>
-            <!-- niżej: Dzięki value, po złym wypełnieniu pól, wartości z pól nie znikają -->
-            <input 
-                type="text" 
-                name="nameChat"
-                maxlength="40"
-                value="<%= form.nameChat %>" 
-                class="form-control <%= errors?.nameChat ? 'is-invalid' : '' %>" required>   
-            <!-- sprawdzamy czy konkretny błąd tego pola istnieje, jeśli nie ma to wartość jest null i nie wchodzi do ifa -->
-            <% if (errors?.nameChat) { %>  
-                <div class="invalid-feedback"><%= errors.nameChat.message %></div>    
-            <% } %>
-        </div>
+    <div class="form-auth card card-body bg-dark text-white text-center w-50">
+        <form method="POST">
+            <!-- wyżej: action="" to link na który wysyłamy formularz, powinien być taki jak link formularza, jak usuniemy pole action to wezmie domyslnie aktualny adres  -->
 
-        <div class="mb-3">
-            <label for="" class="form-label">Slug/adres linku *</label>
-            <!-- niżej: Dzięki value, po złym wypełnieniu pól, wartości z pól nie znikają -->
-            <input 
-                type="text" 
-                name="slug"
-                maxlength="20"
-                value="<%= form.slug %>" 
-                class="form-control <%= errors?.slug ? 'is-invalid' : '' %>" required>   
-            <!-- sprawdzamy czy konkretny błąd tego pola istnieje, jeśli nie ma to wartość jest null i nie wchodzi do ifa -->
-            <% if (errors?.slug) { %>  
-                <div class="invalid-feedback"><%= errors.slug.message %></div>    
-            <% } %>
-        </div>      
-
-        <button class="btn btn-primary"><%- buttonText %></button>
-    </form>
-
-    <!-- powinno być " typeof errors !== 'undefined' ", ale mamy zmienną zdefiniowaną w view-variables -->
-    <% if (errors) { %> 
-        <div class="alert alert-danger mt-3 text-center">
-            <!-- <ul>
-                <% for (const key in errors) { %>
-                    <li><%= errors[key].message %></li>
+            <div class="mb-3">
+                <label for="" class="form-label">Nazwa *</label>
+                <!-- niżej: Dzięki value, po złym wypełnieniu pól, wartości z pól nie znikają -->
+                <input 
+                    type="text" 
+                    name="nameChat"
+                    maxlength="40"
+                    value="<%= form.nameChat %>" 
+                    class="form-control w-75 <%= errors?.nameChat ? 'is-invalid' : '' %>" required>   
+                <!-- sprawdzamy czy konkretny błąd tego pola istnieje, jeśli nie ma to wartość jest null i nie wchodzi do ifa -->
+                <% if (errors?.nameChat) { %>  
+                    <div class="invalid-feedback"><%= errors.nameChat.message %></div>    
                 <% } %>
-            </ul> -->
-            <!-- Możesz tak jak wyżej wyświetlić ponownie błędy napisane pod formularzem, ale skoro będą napisane czy konkretnym polu to niżej napiszemy tylko informację -->
-            Popraw dane!
-        </div>
-    <% } %>
+            </div>
+        
+            <div class="mb-3">
+                <label for="" class="form-label">Slug/adres linku *</label>
+                <!-- niżej: Dzięki value, po złym wypełnieniu pól, wartości z pól nie znikają -->
+                <input 
+                    type="text" 
+                    name="slug"
+                    maxlength="20"
+                    value="<%= form.slug %>" 
+                    class="form-control w-75 <%= errors?.slug ? 'is-invalid' : '' %>" required>   
+                <!-- sprawdzamy czy konkretny błąd tego pola istnieje, jeśli nie ma to wartość jest null i nie wchodzi do ifa -->
+                <% if (errors?.slug) { %>  
+                    <div class="invalid-feedback"><%= errors.slug.message %></div>    
+                <% } %>
+            </div>      
+        
+            <div class="text-center">
+                <button class="btn btn-success"><%- buttonText %></button>
+            </div>            
+        </form> 
+
+        <!-- powinno być " typeof errors !== 'undefined' ", ale mamy zmienną zdefiniowaną w view-variables -->
+        <% if (errors) { %> 
+            <div class="alert alert-danger mt-3 text-center">
+                <!-- <ul>
+                    <% for (const key in errors) { %>
+                        <li><%= errors[key].message %></li>
+                    <% } %>
+                </ul> -->
+                <!-- Możesz tak jak wyżej wyświetlić ponownie błędy napisane pod formularzem, ale skoro będą napisane czy konkretnym polu to niżej napiszemy tylko informację -->
+                Popraw dane!
+            </div>
+        <% } %>
+    </div>
 </div>

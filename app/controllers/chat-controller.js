@@ -74,8 +74,11 @@ class ChatController {
         const { name } = req.params;
         const chat = await Chat.findOne({ slug: name });
 
+        let date = new Date(); //przypisanie aktualnej daty wysłania wiadomości
+
         const message = new Message({
             text: req.body.text,
+            date: date,
             author: req.session.user.nick, //przypisanie komentarza do usera
         })
         

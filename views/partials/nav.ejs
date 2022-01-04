@@ -19,6 +19,11 @@
           <!-- Czyli jeśli url zawiera 'firmy' to nadaj klase active, if not to nic nie rób -->
           <a class="nav-link <%- url.includes('/wiadomosci') ? 'active' : '' %>" href="/wiadomosci">Wiadomości</a>
         </li>        
+        <li class="nav-item">
+          <!-- Inny zapis ifa (warunek ? operacja-true : false) -->
+          <!-- Czyli jeśli url zawiera 'firmy' to nadaj klase active, if not to nic nie rób -->
+          <a class="nav-link <%- url.includes('/chat') ? 'active' : '' %>" href="/chat">Chat</a>
+        </li>        
         <li>
           <div class="nav-item">
             <a class="nav-link <%- url === '/statystyki' && 'active' %>" href="/statystyki">Statystyki</a>
@@ -27,12 +32,12 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
-            Informacje
+            Historia
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Historia</a></li>
-            <li><a class="dropdown-item" href="#">Stadion</a></li>
-            <li><a class="dropdown-item" href="#">Herb</a></li>
+            <li><a class="dropdown-item" href="/stadion">Stadion</a></li>
+            <li><a class="dropdown-item" href="/herb">Herb</a></li>
+            <li><a class="dropdown-item" href="/trofea">Trofea</a></li>
           </ul>
         </li>
         <!-- Jeśli user jest zalogowany to nie pokazujemy w nav Rejestracji i Logowania -->

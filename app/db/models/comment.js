@@ -10,6 +10,9 @@ const commentSchema = new Schema({
         type: String,
         required: [true, 'Tekst jest wymagany']
     },
+    date: {
+        type: Date,
+    },
     //referencja z użyciem nicku, a nie ID, a było łatwiej było wskazać kto napisał komentarz
     author: {
         type: String,

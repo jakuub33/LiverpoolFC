@@ -10,7 +10,10 @@ const messageSchema = new Schema({
         type: String,
         required: [true, 'Tekst jest wymagany']
     },
-    //referencja z użyciem nicku, a nie ID, a było łatwiej było wskazać kto napisał komentarz
+    date: {
+        type: Date,
+    },
+    //referencja z użyciem nicku, a nie ID, a było łatwiej było wskazać kto napisał wiadomość
     author: {
         type: String,
         required: true,

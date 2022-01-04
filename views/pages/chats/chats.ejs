@@ -3,7 +3,7 @@
         <h1 class="text-center">Pokoje z chatami:</h1>
 
         <% if (user) { %>
-        <a href="/zalogowany/chat/dodaj" class="btn btn-success mb-3">Dodaj nowy chat</a>
+            <a href="/zalogowany/chat/dodaj" class="btn btn-success mb-3">Dodaj nowy chat</a>
         <% } %>
 
         <!-- Aby sort nie gryzł się z query w slug to trzeba to zrobić w jednym formularzu -->
@@ -17,7 +17,7 @@
                             <p class="h3 mb-3"><%= chat.nameChat %></p>
                             <p><b>Założyciel:</b> <%= chat.author?.nick %></p>
                             <p><b>Wiadomości:</b> <%= chat.messages.length %></p>
-                            <a href="/chat/<%= chat.slug %>" class="btn btn-primary">Zobacz</a>
+                            <a href="/chat/<%= chat.slug %>" class="btn btn-dark">Zobacz</a>
                             
                             <!-- Jeśli user jest zalogowany -->
                             <% if (user) { %>

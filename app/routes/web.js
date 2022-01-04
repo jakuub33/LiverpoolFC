@@ -15,6 +15,9 @@ router.get('/', PageController.showHome);
 // TABELA I TERMINARZ
 router.get('/statystyki', PageController.showStatistics);
 
+// HISTORIA
+router.get('/historia', PageController.showHistory);
+
 // REJESTRACJA
 router.get('/zarejestruj', UserController.showRegister); // wyświetlanie formularza
 router.post('/zarejestruj', UserController.register); // obsługa rejestracji

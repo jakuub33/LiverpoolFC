@@ -17,31 +17,39 @@
                 <div class="col-9">
                     <!-- Wylistowanie istniejących wiadomości -->
                     <% news.forEach(oneNews => { %>
-                    <div class="card bg-light text-black border-dark mb-3">
-                        <!-- <div class="card-body"> -->
+                        <div class="card bg-light text-black border-dark mb-3">                        
                             <div class="row">
                                 <div class="col-5">
                                     <!-- Jeśli istnieje zdjęcie to je pokaż -->
                                     <% if (oneNews.image) { %>
                                         <!-- dzięki fluid nie rozciągnie sie -->
-                                        <img src="/uploads/<%- oneNews.image %>" class="img-fluid h-100" alt="zdjecie wiadomosci">                                        
+                                        <img src="/uploads/<%- oneNews.image %>" class="img-fluid h-100"    alt="zdjeciewiadomosci">                                        
                                     <% } %>
                                 </div>
                                 <div class="col-6">
                                     <div class="card-body">
-
                                         <p class="h3 mb-3"><%= oneNews.mainTitle %></p>
+                                        <% 
+                                            let date = oneNews.date;
+                                            date = date.toISOString(); 
+                                            const month = date.slice(5, 7);
+                                            const day = date.slice(8, 10);
+                                            const hours = parseInt(date.slice(11, 13)) + 1;
+                                            const mins = date.slice(14, 16);
+                                            date = `${day}.${month} • ${hours}:${mins}`; 
+                                        %>
+                                        <p><small class="text-muted"><%= date %></small></p>
                                         <p><b>Autor:</b> <%= oneNews.author?.nick %></p>
                                         <p><b>Komentarzy:</b> <%= oneNews.comments.length %></p>
                                         
                                         <a href="/wiadomosci/<%= oneNews.slug %>" class="btn btn-primary">Zobacz</a>
-    
+                                    
                                         <!-- Jeśli user jest zalogowany -->
                                         <% if (user) { %>
-    
+                                        
                                             <!-- Sprawdzamy czy user jest autorem aktualności -->
                                             <% if (oneNews.author.nick == user.nick) { %>
-                                                <a href="/zalogowany/wiadomosci/<%= oneNews.slug %>/edytuj" class="btn btn-warning">Edytuj</a>
+                                                < href="/zalogowany/wiadomosci/<%= oneNews.slug %>/edytuj" class="btnbtn-warning">Edytuj</ a>
                                                 <a href="/zalogowany/wiadomosci/<%= oneNews.slug %>/usun" 
                                                     onclick="return confirm('Czy jesteś pewien?')"
                                                     class="btn btn-danger">Usuń</a>
@@ -49,9 +57,8 @@
                                         <% } %>
                                     </div>
                                 </div>
-                            </div>
-                        <!-- </div> -->
-                    </div>
+                            </div>                        
+                        </div>
                     <% }); %>
                 </div>
             </div>

@@ -22,6 +22,7 @@ const chatSchema = new Schema({
         unique: true,
         validate: [checkSlug, 'Znaki specjalne są niedozwolone!'],
     },
+    //referencje
     author: {
         type: mongoose.Types.ObjectId,
         required: true,

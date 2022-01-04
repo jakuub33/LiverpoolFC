@@ -1,6 +1,6 @@
 <div class="container">
     <% if (chat.nameChat) { %>
-        <div class="card border-dark mb-5">       
+        <div class="form-auth card border-dark mb-5 w-75">       
             
             <div class="card-body">
                 <h1>Chat: <%= chat.nameChat %></h1> <!-- Użycie zmiennej przekazanej w kontrolerze -->                             
@@ -11,8 +11,19 @@
 
                     <!-- Wylistowanie wiadomości -->                    
                     <% chat.messages.forEach(message => { %>   
-                        <div class="card border-dark card-body mb-2">  
-                            <p><b><%= message.author %> : </b>
+                        <div class="card border-dark card-body mb-2 ">  
+                            <% 
+                                let date = message.date;
+                                date = date.toISOString(); 
+                                const month = date.slice(5, 7);
+                                const day = date.slice(8, 10);
+                                const hours = parseInt(date.slice(11, 13)) + 1;
+                                const mins = date.slice(14, 16);
+                                const secs = date.slice(17, 19);
+                                date = `${day}.${month} • ${hours}:${mins}:${secs}`; 
+                            %>
+                            <p class="m-0"><b><%= message.author %></b>  
+                            <small class="text-muted"><%= date %></small>
                             <br>           
                             <%= message.text %></p>                                
                         </div>
@@ -25,19 +36,19 @@
         </div> 
         <!-- Sprawdzamy czy user jest zalogowany -->
         <% if (user) { %> 
-            <div class="card border-dark card-body mb-5">
+            <div class="form-auth card border-dark card-body mb-5 w-75">
                 <form method="POST" action="/zalogowany/chat/<%= chat.slug %>">
                     <div class="mb-3">
                         <label for="" class="form-label">Nowa wiadomość:</label>
                         <textarea
                             name="text" 
                             cols="30" rows="1" 
-                            class="form-control" required><%= form.text %></textarea>                        
+                            class="form-control w-100" required><%= form.text %></textarea>                        
                         <% if (errors?.text) { %>
                         <div class="invalid-feedback"><%= errors.text.message %></div>
                         <% } %>
                     </div>
-                    <button class="btn btn-success">Wyślij</button>
+                    <button class="btn btn-success w-100">Wyślij</button>
                 </form>
             </div>
         <% } %>     
