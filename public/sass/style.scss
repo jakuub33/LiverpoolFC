@@ -9,7 +9,7 @@ body {
     min-height: 170vh;
     font-family: 'Montserrat', sans-serif;
     // background: rgb(247, 115, 58);
-    background: linear-gradient(343deg, rgba(96, 0, 0, 1) 0%, rgba(247, 115, 58, 1) 100%);
+    background: linear-gradient(280deg, rgba(96, 0, 0, 1) 0%, rgba(247, 115, 58, 1) 100%);
     // color: white;
 }
 
@@ -185,6 +185,31 @@ nav {
     }
 }
 
+/* TROPHIES */
+.trophies {
+
+    p {
+        margin-top: 20px;
+    }
+
+    .trophies-bg {
+        position: relative;
+        background-image: url('../img/trophies-bg640x426.jpg');
+        background-position: center;
+        background-size: cover;
+        z-index: 0;
+    }
+
+    .bg-shadow {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, .6);
+        z-index: -1;
+    }
+}
+
 /* FOOTER */
 footer {
     position: absolute;
@@ -253,6 +278,12 @@ footer {
     .contact {
         .contact-bg {
             background-image: url('../img/contact-bg1920x1280.jpg');
+        }
+    }
+
+    .trophies {
+        .trophies-bg {
+            background-image: url('../img/trophies-bg1920x1280.jpg');
         }
     }
 }

@@ -17,6 +17,9 @@ router.get('/statystyki', PageController.showStatistics);
 
 // HISTORIA
 router.get('/historia', PageController.showHistory);
+router.get('/stadion', PageController.showStadium);
+router.get('/herb', PageController.showCrest);
+router.get('/trofea', PageController.showTrophies);
 
 // REJESTRACJA
 router.get('/zarejestruj', UserController.showRegister); // wyświetlanie formularza

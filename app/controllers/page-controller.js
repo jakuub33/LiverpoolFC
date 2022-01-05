@@ -1,5 +1,3 @@
-//Każdy model ma swój controller, dla głównej inny, dla ligi inny itd
-
 class PageController {
     //Strona główna
     showHome(req, res) {    
@@ -15,8 +13,26 @@ class PageController {
     }
     
     showHistory(req, res) {    
-        res.render('pages/history', {
+        res.render('pages/history/history', {
             title: 'Historia'
+        });
+    }
+
+    showStadium(req, res) {    
+        res.render('pages/history/stadium', {
+            title: 'Stadion'
+        });
+    }
+
+    showCrest(req, res) {    
+        res.render('pages/history/crest', {
+            title: 'Historia herbu'
+        });
+    }
+
+    showTrophies(req, res) {    
+        res.render('pages/history/trophies', {
+            title: 'Trofea'
         });
     }
 
