@@ -1,29 +1,40 @@
-require('../mongoose'); //normalnie to bedzie używane w app.js (dodałem tutaj dla testów danej kolekcji)
+//Model do pobierania konkretnego meczu z danej kolejki
+//require('../mongoose'); //do testów, potem połączenie z bazą będzie użyte w index.js
 
 const mongoose = require('mongoose');   //pobieramy mongoose
 const Schema = mongoose.Schema; //pobieramy Schema
 //const {  } = require('../validators');
 
 //Stworzenie modelu, na podstawie, którego powstanie kolekcja
-const matchesSchema = new Schema({    
-    winner: {
+const matchSchema = new Schema({    
+    gameweek: {
         type: String,
-        //druzyna home LUB away
-    },  
-    teams: {
-        type: String,
-        //home
-        //away
     },
     date: {
-        type: Date,
-        //data
-        //godzina
-    },      
+        type: String,
+    },
+    homeTeam: {
+        type: String,
+    },
+    scoreHomeTeam: {
+        type: Number,
+    },
+    awayTeam: {
+        type: String,
+    },
+    scoreAwayTeam: {
+        type: Number,
+    },  
+    winner: {
+        type: String,
+    },   
+    status: {
+        type: String,
+    }      
   });
 //##############################################################
 //Operacje po wpisaniu danych przez usera, na których możemy dokonać zmiany przed dodaniem do bd
 
-const Matches = mongoose.model('Matches', matchesSchema);
+const Match = mongoose.model('Match', matchSchema);
 
-module.exports = Matches;
+module.exports = Match;

@@ -45,6 +45,7 @@ app.use(express.static('public'));
 //odczyta wartości z formularza i zapisze do wartości body
 app.use(express.urlencoded({ extended: true }));   //extended:true - parser rozpozna wszystkie typy danych
 app.use(cookieParser());
+app.use(express.json()); //parser dla JSON
 
 //middleware - wstrzykuje coś przed przejściem do kontrolera, możemy go przypisać do konkretnego adresu
 //Można dodać kolejne middlewares i będą wykonywane po kolei dzięki funkcji next()
@@ -54,6 +55,8 @@ app.use('/', require('./middleware/user-middleware'));
 app.use('/zalogowany', require('./middleware/access-middleware')); //sprawdza czy user jest zalogowany
 
 // mount routes
+//API - najpierw, żeby był rozpoznawalny adres w web.js
+app.use('/api', require('./routes/apiRoute')); //dodajemy do URL /api, wszystko co związane z api, będzie zaczynać się od /api
 app.use(require('./routes/web'));
 
 module.exports = app; //eksportuje domyślnie aplikację jako zmienną app

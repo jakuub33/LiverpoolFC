@@ -18,8 +18,8 @@ module.exports = {
     //     return re.test(duration);
     // },    
 
-    checkScore(score) {
-        const re = /^[0-9\:]+$/;
+    checkNumbers(score) {
+        const re = /^[0-9]+$/;
         return re.test(score);
     },  
 
