@@ -37,14 +37,15 @@ const scoreSchema = new Schema({
         default: 0,
         validate: [checkNumbers, 'Proszę wprowadzić cyfry!']
     },
-    //referencje
-    // league: {
-    //     type: mongoose.Types.ObjectId, 
-    //     // required: true,
-    //     ref: 'League' 
-    // },
-    user: {
-        type: mongoose.Types.ObjectId,
+    correctScoreHome: {
+        type: Number
+    },
+    correctScoreAway: {
+        type: Number
+    },
+    //referencje    
+    player: {
+        type: String,
         ref: 'User' 
     },
     points: {

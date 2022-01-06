@@ -95,41 +95,31 @@ async function addPoints() {
     console.log(`Status isUpdated = ${isUpdated}`);
     if (isUpdated) {
         //mecz zakończony z finalnym wynikiem do porownania z typem gracza
-        const match = await Match.find({
+        const matchFinished = await Match.findOne({
             gameweek: currentGameweek
         });
 
-        //typ użytkownika
+        //typy użytkowników
         const scores = await Score.find({
             gameweek: currentGameweek
         });
 
         // Musimy przejść po wszystkich wynikach
-        for (const score of scores) {
-            //trzeba wyszukać ten sam mecz w tabeli Matches
-
-            //tutaj można to przerobić bo match to bedzie zawsze jeden obiekt a nie tablica obiektow
-
-            let sameMatch = match.find(element => {
-                if (score.homeTeam === element.homeTeam) {
-                    return score.homeTeam;
-                }
-            });
-            // console.log(`ZNALEZIONY MECZ TO: ${sameMatch} === ${score}`);
+        for (const score of scores) {   
             let points = 0;
 
             // Sprawdzamy czy wytypowano prawidłowy rezultat meczu
             if ((score.scoreHome > score.scoreAway &&
-                    sameMatch.scoreHomeTeam > sameMatch.scoreAwayTeam) ||
+                matchFinished.scoreHomeTeam > matchFinished.scoreAwayTeam) ||
                 (score.scoreHome < score.scoreAway &&
-                    sameMatch.scoreHomeTeam < sameMatch.scoreAwayTeam) ||
+                    matchFinished.scoreHomeTeam < matchFinished.scoreAwayTeam) ||
                 (score.scoreHome === score.scoreAway &&
-                    sameMatch.scoreHomeTeam === sameMatch.scoreAwayTeam)) {
+                    matchFinished.scoreHomeTeam === matchFinished.scoreAwayTeam)) {
                 points += 1;
             }
 
             //Sprawdzamy czy wytypowano prawidłowy wynik meczu
-            if ((score.scoreHome == sameMatch.scoreHomeTeam) && (score.scoreAway == sameMatch.scoreAwayTeam)) {
+            if ((score.scoreHome == matchFinished.scoreHomeTeam) && (score.scoreAway == matchFinished.scoreAwayTeam)) {
                 points += 2;
             }
 
@@ -161,4 +151,4 @@ async function loadData() {
     }, 5000);
 }
 
-loadData()
+// loadData()

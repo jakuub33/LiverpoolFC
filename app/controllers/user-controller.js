@@ -13,7 +13,8 @@ class UserController {
             //odczytuje wpisane wartości do formularza
             nick: req.body.nick,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            player: false
         });
 
         try {
@@ -88,13 +89,7 @@ class UserController {
         //wyszukuje usera po ID i podmieniam nowe wpisane dane
         const user = await User.findById(req.session.user._id); 
         user.email = req.body.email;
-        user.firstName = req.body.firstName;
-        user.lastName = req.body.lastName;
-
-        // jeśli zostało podane hasło to aktualizujemy je
-        if (req.body.password) {
-            user.password = req.body.password;
-        }
+        user.password = req.body.password;
         
         try {
             await user.save();

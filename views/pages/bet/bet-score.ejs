@@ -1,0 +1,215 @@
+<div class="container">
+    <div class="text-center mb-4">
+        <h1>Typowanie wyników</h1>
+    </div>
+    
+    <div class="form-auth card card-body bg-dark text-white text-center mb-3">
+        <h5>Wytypuj wynik następnego meczu i sprawdź się czy jesteś lepszym ekspertem niż inni użytkownicy!</h5>  
+        
+        <!-- TABELA RANKINGOWA #################################################### -->
+        <!-- Sprawdzenie czy są gracze -->
+        <% if (playerObjects.length > 0) { %>
+            <!-- Tabela z wynikami -->
+            <div class="d-flex flex-row justify-content-center">
+                <table class="table table-striped table-hover table-dark border border-white text-center mb-5 mt-3 w-75">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nick</th>
+                        <th scope="col">Punkty</th>
+                      </tr>
+                    </thead>
+                    <tbody>      
+                        <!-- Tabela z posortowanymi graczami od najlepszego -->
+                        <% for(const [index, playerObj] of playerObjects.entries()){ %>
+                            <tr>
+                                <th scope="row"><%= index + 1 %></th>
+                                <td><%= playerObj.playerNick %></td>    
+                                <td>
+                                    <%= playerObj.playerAllPoints %> (<b class="text-success">+<%= playerObj.playerGWpoints %></b>)
+                                </td>   
+                            </tr>
+                        <% }; %>
+                    </tbody>
+                  </table>
+            </div>    
+        <% } else { %>
+            <!-- w lidze nie ma graczy do pokazania rankingu -->
+        <% } %>
+
+        <!-- TYPOWANIE ############################################################ -->
+        <!-- Sprawdzamy czy user jest zalogowany -->
+        <% if (user) { %> 
+            <div class="text-center pb-3">
+                <h3><%= resultsHeader %></h3>
+                <h6>Kolejka <%= gameweekHeader %></h6>
+            </div>
+
+            <% let betted=false %>
+            <!-- Jeśli user już wytypował wynik to ustaw betted=true -->
+            <% if (userScore) { %>
+                <% betted=true %>
+            <% } %>  
+
+            <!-- Jeśli user jeszcze nie typował to pokazujemy mecz do wytypowania -->
+            <!-- Jeśli typował to pokazujemy wytypowany wynik -->
+            <% if (!betted) { %> 
+                <% let date, month, day, hours, mins; %>
+                <form method="POST" class="text-center pb-5">                            
+                    <div class="row mb-3 pb-2">
+                        <%  date = matchScheduled.date;
+                            month = date.slice(5, 7);
+                            day = date.slice(8, 10);
+                            hours = parseInt(date.slice(11, 13)) + 1;
+                            mins = date.slice(14, 16);
+                            date = `${day}.${month} ${hours}:${mins}`; %>
+                        <div class="col-12 col-md-2"><%= date %></div>
+                        <div class="col-3 col-md-2">
+                            <label for="form-label"><%= matchScheduled.homeTeam %></label>
+                        </div>
+                        <div class="col-2 col-md-1">
+                            <input type="number" 
+                            name="homeTeamScore" 
+                            min="0" max="20" 
+                            value="0"
+                            class="form-control form-control p-1 p-md-2 w-75" required> 
+                            <!-- value: Domyślnie każdy wynik to 0:0 -->                                
+                        </div>
+                        <div class="col-2 col-md-2">:</div>
+                        <div class="col-2 col-md-1">
+                            <input type="number" 
+                            name="awayTeamScore" 
+                            min="0" max="20"
+                            value="0"
+                            class="form-control form-control p-1 p-md-2 w-75" required> 
+                        </div>                                    
+                        <div class="col-3 col-md-2">
+                            <label for="form-label"><%= matchScheduled.awayTeam %></label>
+                        </div>    
+                        <div class="col-12 col-md-2 mb-4"><!-- Dla równego odstępu --></div>       
+                    </div>                        
+                    <!-- Sprawdzenie czy pierwszy mecz już się rozpoczął -->
+                    <!-- matchNotStarted - normalnie powinień byc taki warunek -->
+                    <% if (matchNotStarted) { %>
+                        <button class="btn btn-success">Wytypuj</button>    
+                    <% } else { %>   
+                        <div class="alert alert-danger mt-3 text-center">
+                            Niestety spóźniłeś się! Pierwszy mecz dla tej kolejki już się zaczął!
+                        </div>
+                    <% } %>   
+                </form>
+            <% } else { %>
+                <% let date, month, day, hours, mins; %>
+                <div class="text-center">                    
+                    <div class="row mb-3 pb-2">
+                        <%  date = userScore.date;
+                            month = date.slice(5, 7);
+                            day = date.slice(8, 10);
+                            hours = parseInt(date.slice(11, 13)) + 1;
+                            mins = date.slice(14, 16);
+                            date = `${day}.${month} ${hours}:${mins}`; %>
+                        <div class="col-12 col-md-2"><%= date %></div>
+                        <div class="col-3 col-md-2">
+                            <label for="form-label"><%= userScore.homeTeam %></label>
+                        </div>
+                        <div class="col-2 col-md-1">
+                            <input type="number"                                 
+                            placeholder="<%= userScore.scoreHome %>"
+                            class="form-control p-1 p-md-2 w-75" disabled> 
+                            <!-- value: Jeśli jest wytypowany wynik to pokaż wynik -->                                
+                        </div>
+    
+                        <div class="col-2 col-md-2">:</div>
+    
+                        <div class="col-2 col-md-1">
+                            <input type="number"                                 
+                            placeholder="<%= userScore.scoreAway %>"
+                            class="form-control p-1 p-md-2 w-75" disabled> 
+                        </div>                                    
+                        <div class="col-3 col-md-2">
+                            <label for="form-label"><%= userScore.awayTeam %></label>
+                        </div>   
+                        <div class="col-12 col-md-2 mb-4"><!-- Dla równego odstępu --></div>     
+                    </div> 
+                </div>
+            <% } %>
+
+            <!-- Sprawdzamy czy są wytypowane wcześniejsze kolejki, aby pokazać jakie mecze zostały trafione -->
+            <% if (historyScores.length > 0) { %>
+                <!-- Jeśli gracz ma wytypowaną tylko aktualną kolejkę to nie pokazuj h3 -->
+                <% if (!(historyScores.length == 1 && historyScores[0].gameweek === gameweekHeader)) { %>
+                    <div class="text-center pt-3 pb-3">
+                        <h3>Wcześniej wytypowane kolejki</h3>
+                    </div>
+                <% } %>
+
+                <% let date, month, day, hours, mins; %>
+                <div class="text-center">
+                    <% for (const historyScore of historyScores) { %>
+                        <% if (historyScore.gameweek === gameweekHeader) { %>
+                            <% continue; %>
+                        <% } %>
+                        <div class="row mb-3 pb-2">
+                            <%  date = historyScore.date;
+                                month = date.slice(5, 7);
+                                day = date.slice(8, 10);
+                                hours = parseInt(date.slice(11, 13)) + 1;
+                                mins = date.slice(14, 16);
+                                date = `${day}.${month} ${hours}:${mins}`; %>
+                            <div class="col-12 col-md-2"><%= date %></div>
+                            <div class="col-3 col-md-2">
+                                <label for="form-label"><%= historyScore.homeTeam %></label>
+                            </div>
+                            <div class="col-2 col-md-1">
+                                <input type="number"                                 
+                                placeholder="<%= historyScore.scoreHome %>"
+                                class="form-control p-1 p-md-2 w-75" disabled> 
+                                <!-- value: Jeśli są wytypowane wyniki to pokaż wynik -->                                
+                            </div>
+        
+                            <div class="col-2 col-md-2">:</div>
+        
+                            <div class="col-2 col-md-1">
+                                <input type="number"                                 
+                                placeholder="<%= historyScore.scoreAway %>"
+                                class="form-control p-1 p-md-2 w-75" disabled> 
+                            </div>                                    
+                            <div class="col-3 col-md-2">
+                                <label for="form-label"><%= historyScore.awayTeam %></label>
+                            </div>   
+                            <div class="col-12 col-md-2 mb-4">
+                                <!-- trzeba wyszukać ten sam mecz w tabeli Matches -->                                
+
+                                <!-- pokazanie jakim wynikiem skończył się mecz -->                                    
+                                <% if ((historyScore.scoreHome === historyScore?.correctScoreHome) &&
+                                       (historyScore.scoreAway === historyScore?.correctScoreAway)) { %>
+                                    <!-- prawidłowo wytypowany wynik będzie zielony -->
+                                    <b class="text-white bg-success rounded-pill p-2"
+                                       data-bs-toggle="tooltip" data-bs-placement="right" title="Wynik trafiony! +3pkt">
+                                        <%= historyScore?.correctScoreHome %> : <%= historyScore?.correctScoreAway %>
+                                    </b>
+                                <% } else if (
+                                    (historyScore.scoreHome > historyScore.scoreAway && historyScore?.correctScoreHome > historyScore?.correctScoreAway) ||
+                                    (historyScore.scoreHome < historyScore.scoreAway && historyScore?.correctScoreHome < historyScore?.correctScoreAway) ||
+                                    (historyScore.scoreHome === historyScore.scoreAway && historyScore?.correctScoreHome === historyScore?.correctScoreAway)) { %>
+                                        <!-- prawidłowo wytypowany rezultat będzie jaśniej zielony -->
+                                        <b class="text-white rounded-pill p-2" style="background-color: #66ff66;"
+                                            data-bs-toggle="tooltip" data-bs-placement="right" title="Rezultat trafiony! +1pkt">
+                                            <%= historyScore?.correctScoreHome %> : <%= historyScore?.correctScoreAway %>
+                                        </b>
+                                <% } else { %>
+                                    <!-- tooltip z informacją o nietrafionym typowaniu -->
+                                    <b class="p-2" data-bs-toggle="tooltip" data-bs-placement="right" title="Wynik nietrafiony!">
+                                        <%= historyScore?.correctScoreHome %> : <%= historyScore?.correctScoreAway %>
+                                    </b>
+                                <% } %>
+                            </div>        
+                        </div>    
+                    <% }; %>
+                </div>
+            <% } %>
+        <% } else { %> 
+            <h6>Zaloguj się, aby wytypować wynik i dołączyć do zabawy!</h6>
+        <% } %> 
+    </div>
+</div>

@@ -21,3 +21,9 @@
     document.querySelectorAll('.pagination a').forEach(a => {
         a.addEventListener('click', changePage);
     });
+
+// dodawanie tooltip dla trafionych wyników league.ejs
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})

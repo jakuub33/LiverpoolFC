@@ -7,6 +7,7 @@ const UserController = require('../controllers/user-controller');
 const PageController = require('../controllers/page-controller');
 const NewsController = require('../controllers/news-controller');
 const ChatController = require('../controllers/chat-controller');
+const BetController = require('../controllers/bet-controller');
 const upload = require('../services/uploader'); //odpowiada za wgrywanie zdjęć
 
 // STRONA GŁÓWNA
@@ -76,6 +77,10 @@ router.get('/zalogowany/chat/:name/usun', ChatController.deleteChat);
 
 // WIADOMOŚCI W CHACIE
 router.post('/zalogowany/chat/:name', ChatController.messageButton); //obsługa formularza wysłanego za pomocą POST
+
+// TYPOWANIE WYNIKU
+router.get('/typowanie-wyniku', BetController.showBetScore); //wyświetlanie strony z typowaniem wyniku
+router.post('/typowanie-wyniku', BetController.betButton); //obsługa formularza wysłanego za pomocą POST
 
 // BŁĘDNE ADRESY
 router.get('*', PageController.showNotFound);
