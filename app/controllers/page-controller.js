@@ -13,14 +13,14 @@ class PageController {
     }
     
     showHistory(req, res) {    
-        res.render('pages/history/history', {
-            title: 'Historia'
+        res.render('pages/history/club', {
+            title: 'Historia kubu'
         });
     }
 
     showStadium(req, res) {    
         res.render('pages/history/stadium', {
-            title: 'Stadion'
+            title: 'Historia stadionu'
         });
     }
 

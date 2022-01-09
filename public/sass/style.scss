@@ -35,25 +35,21 @@ main {
 
 /* NAVBAR */
 nav {
-
-    a,
-    .nav-link {
-        color: white;
-    }
-
-    a,
-    .nav-link:hover {
-        color: orangered;
-    }
-
-    .active {
-        color: orangered; //Jeśli dana sekcja jest aktywna
-    }
-
     .navbar-logo {
         width: 50px;
     }
+}
 
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-dark .navbar-nav .nav-link.active {
+    color: orangered;
+}
+
+.dropdown-menu-dark .dropdown-item:active {
+    background-color: #8c2111;
 }
 
 .form-auth {
@@ -185,6 +181,87 @@ nav {
     }
 }
 
+/* HISTORY */
+.timeline-items{
+	max-width: 1000px;
+	margin:auto;
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+}
+
+.timeline-items::before{
+	content: '';
+	position: absolute;
+	width: 2px;
+	height: 99%;
+	background-color: #2f363e;
+	left: calc(50% - 1px);
+}
+
+.timeline-item{
+	margin-bottom: 40px;
+	width: 100%;
+	position: relative;
+}
+
+.timeline-item:last-child{
+	margin-bottom: 0;
+}
+
+.timeline-item:nth-child(odd){
+    padding-right: calc(50% + 30px);
+	text-align: right;
+}
+
+.timeline-item:nth-child(even){
+    padding-left: calc(50% + 30px);
+}
+
+.timeline-dot{
+	height: 16px;
+	width: 16px;
+	background-color: #f7a33a;
+	position: absolute;
+	left: calc(50% - 8px);
+	border-radius: 50%;
+	top:10px;
+}
+
+.timeline-date{
+	font-size: 18px;
+	color: orangered;
+	margin:6px 0 6px;
+}
+
+.timeline-content{
+    background-color: #2f363e;
+    transition: 0.5s;
+	padding: 10px 20px;
+	border-radius: 5px;
+}
+
+.timeline-content:hover{
+    border-bottom: solid 1px white;
+    border-right: solid 1px white;
+    transform: translateY(1em);
+}
+
+.timeline-content h3{
+    font-size: 22px;
+	color:orangered;
+	text-transform: capitalize;
+	font-weight: 500;
+}
+
+.timeline-content p{
+    color: #c8c8c8;
+	font-size: 16px;
+	font-weight: 300;
+	line-height: 22px;
+    margin-bottom: 0;
+}
+
 /* TROPHIES */
 .trophies {
 
@@ -208,6 +285,16 @@ nav {
         background-color: rgba(0, 0, 0, .6);
         z-index: -1;
     }
+}
+
+/* CRESTS */
+.crest-bg {
+    height: 700px;
+}
+
+.crest-info {
+    float: left;
+    margin-right: 16px;
 }
 
 /* FOOTER */
@@ -285,5 +372,22 @@ footer {
         .trophies-bg {
             background-image: url('../img/trophies-bg1920x1280.jpg');
         }
+    }
+}
+
+@media (max-width: 576px) {
+    .timeline-content h3{
+        font-size: 18px;
+        color:orangered;
+    }
+    
+    .timeline-content p{
+        color: #c8c8c8;
+        font-size: 10px;
+        line-height: normal;
+    }
+
+    .crest-bg {
+        height: 400px;
     }
 }

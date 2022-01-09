@@ -17,7 +17,7 @@ router.get('/', PageController.showHome);
 router.get('/statystyki', PageController.showStatistics);
 
 // HISTORIA
-router.get('/historia', PageController.showHistory);
+router.get('/klub', PageController.showHistory);
 router.get('/stadion', PageController.showStadium);
 router.get('/herb', PageController.showCrest);
 router.get('/trofea', PageController.showTrophies);
