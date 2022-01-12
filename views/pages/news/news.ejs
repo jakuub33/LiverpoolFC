@@ -11,22 +11,22 @@
             <%- include('partials/search') %>
 
             <div class="row">
-                <div class="col-3">
+                <div class="col-12 col-lg-3 mb-3">
                     <%- include('partials/filters') %>
                 </div>
-                <div class="col-9">
+                <div class="col-12 col-lg-9">
                     <!-- Wylistowanie istniejących wiadomości -->
                     <% news.forEach(oneNews => { %>
                         <div class="card bg-light text-black border-dark mb-3">                        
                             <div class="row">
-                                <div class="col-5">
+                                <div class="col-12 col-md-5">
                                     <!-- Jeśli istnieje zdjęcie to je pokaż -->
                                     <% if (oneNews.image) { %>
                                         <!-- dzięki fluid nie rozciągnie sie -->
                                         <img src="/uploads/<%- oneNews.image %>" class="img-fluid h-100"    alt="zdjeciewiadomosci">                                        
                                     <% } %>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-12 col-md-6">
                                     <div class="card-body">
                                         <p class="h3 mb-3"><%= oneNews.mainTitle %></p>
                                         <% 
@@ -49,7 +49,7 @@
                                         
                                             <!-- Sprawdzamy czy user jest autorem aktualności -->
                                             <% if (oneNews.author.nick == user.nick) { %>
-                                                < href="/zalogowany/wiadomosci/<%= oneNews.slug %>/edytuj" class="btnbtn-warning">Edytuj</ a>
+                                                <a href="/zalogowany/wiadomosci/<%= oneNews.slug %>/edytuj" class="btn btn-warning">Edytuj</a>
                                                 <a href="/zalogowany/wiadomosci/<%= oneNews.slug %>/usun" 
                                                     onclick="return confirm('Czy jesteś pewien?')"
                                                     class="btn btn-danger">Usuń</a>

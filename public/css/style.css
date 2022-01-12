@@ -232,10 +232,9 @@ nav .navbar-logo {
 }
 
 .timeline-content:hover {
-  border-bottom: solid 1px white;
-  border-right: solid 1px white;
-  -webkit-transform: translateY(1em);
-          transform: translateY(1em);
+  border: solid 1px white;
+  -webkit-transform: translateY(0.5em);
+          transform: translateY(0.5em);
 }
 
 .timeline-content h3 {
@@ -260,7 +259,7 @@ nav .navbar-logo {
 
 .trophies .trophies-bg {
   position: relative;
-  background-image: url("../img/trophies-bg640x426.jpg");
+  background-image: url("../img/history/trophies-bg640x426.jpg");
   background-position: center;
   background-size: cover;
   z-index: 0;
@@ -384,28 +383,54 @@ footer {
     background-image: url("../img/footer-bg1920x1280.jpg");
   }
   .trophies .trophies-bg {
-    background-image: url("../img/trophies-bg1920x1280.jpg");
-  }
-}
-
-@media (max-width: 576px) {
-  .timeline-content h3 {
-    font-size: 18px;
-    color: orangered;
-  }
-  .timeline-content p {
-    color: #c8c8c8;
-    font-size: 10px;
-    line-height: normal;
-  }
-  .crest-bg {
-    height: 400px;
+    background-image: url("../img/history/trophies-bg1920x1280.jpg");
   }
 }
 
 @media (max-width: 768px) {
+  .form-auth {
+    width: 75% !important;
+  }
+  .form-auth .form-control {
+    margin: auto;
+    width: 80%;
+    border-color: black;
+  }
+  .form-auth button {
+    width: 50%;
+  }
+  .timeline-item:nth-child(even) {
+    padding-left: 0;
+  }
+  .timeline-item:nth-child(odd) {
+    padding-right: 0;
+  }
+  .crest-info {
+    width: 100%;
+  }
   .footer .footer-nav {
     width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .statistics .list-group-item-dark {
+    font-size: 10px;
+  }
+  .statistics .matchDates {
+    margin-right: 0.5rem;
+  }
+  .statistics .teamNames {
+    margin-left: 0.5rem;
+  }
+  .statistics .table {
+    font-size: 9px;
+  }
+  .table-trophies {
+    font-size: 12px;
+  }
+  .crest-bg {
+    height: 400px;
   }
 }
 /*# sourceMappingURL=style.css.map */

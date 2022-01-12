@@ -54,9 +54,9 @@
                 <% } %>                
             </div> 
         </div> 
-        <!-- Sprawdzamy czy user jest zalogowany -->
-        <% if (user) { %> 
-            <div class="card border-dark card-body mb-5">
+        <div class="card border-dark card-body">
+            <!-- Sprawdzamy czy user jest zalogowany -->
+            <% if (user) { %> 
                 <form method="POST" action="/zalogowany/wiadomosci/<%= oneNews.slug %>">
                     <div class="mb-3">
                         <label for="" class="form-label">Nowy komentarz:</label>
@@ -70,8 +70,10 @@
                     </div>
                     <button class="btn btn-success">Skomentuj</button>
                 </form>
-            </div>
-        <% } %>     
+            <% } else { %>            
+                <h6 class="text-center">Zaloguj się, aby wytypować wynik i dołączyć do zabawy!</h6>     
+            <% } %>                
+        </div>
                 
     <% } else { %>
         <h1>Nie ma takiej firmy!</h1>
