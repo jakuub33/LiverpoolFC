@@ -7,7 +7,7 @@
 
 body {
   position: relative;
-  min-height: 170vh;
+  min-height: 100vh;
   font-family: 'Quicksand', sans-serif;
   background: linear-gradient(280deg, #600000 0%, #f7733a 100%);
 }
@@ -17,16 +17,11 @@ h2 {
   text-transform: uppercase;
 }
 
-main .container {
-  padding-bottom: 2.5rem;
-  /* Footer height */
-}
-
 .underline {
   margin: 0 auto;
   height: 3px;
   width: 60px;
-  background-color: red;
+  background-color: orangered;
 }
 
 /* NAVBAR */
@@ -290,16 +285,6 @@ nav .navbar-logo {
   margin-right: 16px;
 }
 
-/* FOOTER */
-footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2.5rem;
-  color: white;
-}
-
 /* TEAM */
 .team .card {
   -webkit-transition: 0.6s;
@@ -315,33 +300,39 @@ footer {
 }
 
 .team .card-text {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 15px;
   font-size: 85px;
   line-height: 60px;
   opacity: 0.2;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  padding: 15px;
 }
 
 .team .card-body-player {
   height: 180px;
 }
 
-.contact {
+/* FOOTER */
+footer {
+  color: white;
+  width: 100%;
+}
+
+.footer {
   margin-top: 80px;
 }
 
-.contact .contact-bg {
+.footer .footer-bg {
   position: relative;
-  background-image: url("../img/contact-bg640x426.jpg");
+  background-image: url("../img/footer-bg640x426.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   z-index: 0;
 }
 
-.contact .shadow-bg {
+.footer .shadow-bg {
   position: absolute;
   top: 0;
   height: 100%;
@@ -350,7 +341,11 @@ footer {
   z-index: -1;
 }
 
-.contact a {
+.footer .footer-nav {
+  width: 80%;
+}
+
+.footer a {
   padding-right: 10px;
   text-decoration: none;
   color: white;
@@ -358,11 +353,15 @@ footer {
   transition: color .3s;
 }
 
-.contact p {
+.footer .active {
+  color: orangered;
+}
+
+.footer p {
   margin: 0;
 }
 
-.contact .icons a {
+.footer .icons a {
   padding: 0 5px;
   text-decoration: none;
   color: white;
@@ -371,18 +370,18 @@ footer {
   transition: color .3s;
 }
 
-.contact .icons a:hover,
-.contact a:hover {
-  color: red;
+.footer .icons a:hover,
+.footer a:hover {
+  color: orangered;
 }
 
-.contact .info {
+.footer .info {
   font-size: 16px;
 }
 
 @media (min-width: 1200px) {
-  .contact .contact-bg {
-    background-image: url("../img/contact-bg1920x1280.jpg");
+  .footer .footer-bg {
+    background-image: url("../img/footer-bg1920x1280.jpg");
   }
   .trophies .trophies-bg {
     background-image: url("../img/trophies-bg1920x1280.jpg");
@@ -401,6 +400,12 @@ footer {
   }
   .crest-bg {
     height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer .footer-nav {
+    width: 100%;
   }
 }
 /*# sourceMappingURL=style.css.map */
