@@ -13,6 +13,7 @@ class BetController {
         let matchUpcoming = req.body.matchUpcoming; //tablica obiektów - nadchodzący mecz
         matchUpcoming = matchUpcoming[0];
 
+        //Przypisanie końcowego wyniku meczu do typów użytkowników
         const score = await Score.findOne({ gameweek: matchCurrent.matchday });
         score.correctScoreHome = matchCurrent.score.fullTime.homeTeam;
         score.correctScoreAway = matchCurrent.score.fullTime.awayTeam;

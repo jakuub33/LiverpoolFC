@@ -2,7 +2,7 @@
 const { RateLimiterMemory } = require('rate-limiter-flexible'); //zapisywanie połączeń w pamięci serwera
 
 const rateLimiter = new RateLimiterMemory({
-    points: 20, //na ile requestów chcę zezwolić
+    points: 50, //na ile requestów chcę zezwolić
     duration: 1 //przez ile sekund
 });
 

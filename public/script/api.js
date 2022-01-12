@@ -52,7 +52,7 @@ const fetchAndDisplayData = () => {
            
             const span3 = createDOMElement('span', 'matchDates', `${dayOfMatch}`);
             const span2 = createDOMElement('span', 'teamNames', `Wynik ${homeTeamScore}:${awayTeamScore}`);
-            const span1 = createDOMElement('span', null, `${homeTeamName} VS ${awayTeamName}`);
+            const span1 = createDOMElement('span', null, `${homeTeamName} : ${awayTeamName}`);
 
             if (match.status === "FINISHED") {
                 const singleMatch = createDOMElement('li', 'list-group-item list-group-item-action list-group-item-dark');

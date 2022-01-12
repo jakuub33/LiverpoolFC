@@ -2,6 +2,7 @@
 const axios = require('axios');
 const Match = require('../db/models/match.js');
 const Score = require('../db/models/score.js');
+const Team = require('../db/models/team.js');
 
 const headers = {
     'Content-Type': 'application/json',
@@ -138,17 +139,52 @@ async function addPoints() {
     }    
 }
 
+//Pobieramy aktualny skład
+async function getTeam() {
+    try {     
+        const team =
+            await axios.get(`https://api.football-data.org/v2/teams/64`, {
+                headers: headers
+            }).then(resp => resp.data.squad)
+
+        //Powyższym requestem pobieramy cały skład, więc musimy posortować piłkarzy pozycjami
+        // let goalkeepers = team.filter(player => player.position == "Goalkeeper");                
+        // let defenders = team.filter(player => player.position == "Defender");
+        // let midfielders = team.filter(player => player.position == "Midfielder");
+        // let attackers = team.filter(player => player.position == "Attacker");
+
+        for (const player of team) {
+            const teamObject = new Team({
+                name: player.name,
+                birthday: player.dateOfBirth,
+                nationality: player.nationality,
+                position: player.position,
+                number: null,
+                image: null, 
+            });
+
+            try {
+                await teamObject.save();
+            } catch (e) {
+                console.log('error');
+                console.log(e);
+            }
+        }     
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 //Najpierw musimy pobrać aktualną kolejkę...
-async function loadData() {
+async function loadData() {   
     await getCurrentMatchday()
-
-    // TESTOWANIE NA SZTYWNO       
-    // getData(currentGameweek)
-
     await ifDataExist()
     setTimeout(() => {
         addPoints()
     }, 5000);
 }
+
+//Aktualizacja składu
+// getTeam()
 
 // loadData()

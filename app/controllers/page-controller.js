@@ -1,3 +1,5 @@
+const Team = require('../db/models/team');
+
 class PageController {
     //Strona główna
     showHome(req, res) {    
@@ -41,6 +43,21 @@ class PageController {
         res.render('errors/404', {
             title: 'Nie znaleziono',
             layout: 'layouts/error' //Strony błędów będa się różnić od zwykłych stron, więc osobny layout            
+        });
+    }
+
+    async showTeam(req, res) { 
+        const goalkeepers = await Team.find({ position: "Goalkeeper" });
+        const defenders = await Team.find({ position: "Defender" });
+        const midfielders = await Team.find({ position: "Midfielder" });
+        const attackers = await Team.find({ position: "Attacker" });
+        
+        res.render('pages/team', {
+            title: 'Skład',
+            goalkeepers,
+            defenders,
+            midfielders,
+            attackers
         });
     }
 }

@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="text-center mb-4">
+        <h1>Aktualny skład</h1>
+    </div>
+
+    <div class="team card card-body bg-dark mb-3">
+        <div class="text-white">
+            <h2><b>Bramkarze</b></h2>
+            <hr>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            <% for (const goalkeeper of goalkeepers) { %>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="img/team/<%- goalkeeper.image %>" class="card-img-top" alt="Player face">
+                    <div class="card-body card-body-player">
+                        <div class="card-title"><h3><%= goalkeeper.name %></h3><%= goalkeeper.nationality %></div>
+                        <p class="card-text float-end"><%= goalkeeper.number %></p>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+        <div class="text-white mt-3">
+            <h2><b>Obrońcy</b></h2>
+            <hr>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            <% for (const defender of defenders) { %>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="img/team/<%- defender.image %>" class="card-img-top" alt="Player face">
+                    <div class="card-body card-body-player">
+                        <div class="card-title"><h3><%= defender.name %></h3><%= defender.nationality %></div>
+                        <p class="card-text float-end"><%= defender.number %></p>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+        <div class="text-white mt-3">
+            <h2><b>Pomocnicy</b></h2>
+            <hr>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            <% for (const midfielder of midfielders) { %>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="img/team/<%- midfielder.image %>" class="card-img-top" alt="Player face">
+                    <div class="card-body card-body-player">
+                        <div class="card-title"><h3><%= midfielder.name %></h3><%= midfielder.nationality %></div>
+                        <p class="card-text float-end"><%= midfielder.number %></p>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+        <div class="text-white mt-3">
+            <h2><b>Napastnicy</b></h2>
+            <hr>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            <% for (const attacker of attackers) { %>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="img/team/<%- attacker.image %>" class="card-img-top" alt="Player face">
+                    <div class="card-body card-body-player">
+                        <div class="card-title"><h3><%= attacker.name %></h3><%= attacker.nationality %></div>
+                        <p class="card-text float-end"><%= attacker.number %></p>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>

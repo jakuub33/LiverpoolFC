@@ -22,6 +22,9 @@ router.get('/stadion', PageController.showStadium);
 router.get('/herb', PageController.showCrest);
 router.get('/trofea', PageController.showTrophies);
 
+//SKŁAD
+router.get('/sklad', PageController.showTeam);
+
 // REJESTRACJA
 router.get('/zarejestruj', UserController.showRegister); // wyświetlanie formularza
 router.post('/zarejestruj', UserController.register); // obsługa rejestracji

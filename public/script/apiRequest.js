@@ -6,7 +6,7 @@ const personalToken = "232846b35e7f4c199efb0cd92f5731c7"
 
 
 export const getDataForShedule = () => {
-    return fetch(`https://api.football-data.org/v2/competitions/PL/matches`, {
+    return fetch(`https://api.football-data.org/v2/teams/64/matches`, {
         headers: {
           'Content-Type': 'application/json',
           'X-Auth-Token': personalToken
