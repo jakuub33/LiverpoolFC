@@ -2,7 +2,8 @@
     <div class="card card-body bg-dark text-white">
         <h1 class="text-center">Pokoje z chatami:</h1>
 
-        <% if (user) { %>
+        <!-- Sprawdzamy czy zalogowany user jest adminem -->
+        <% if (user && user.role == 'admin') { %>
             <a href="/zalogowany/chat/dodaj" class="btn btn-success mb-3">Dodaj nowy chat</a>
         <% } %>
 
@@ -12,7 +13,7 @@
             
                 <!-- Wylistowanie istniejących wiadomości -->
                 <% chats.forEach(chat => { %>
-                    <div class="card bg-light text-black border-dark mb-3">                        
+                    <div class="form-auth card bg-light text-black border-dark mb-3 w-75">                        
                         <div class="card-body">
                             <p class="h3 mb-3"><%= chat.nameChat %></p>
                             <p><b>Założyciel:</b> <%= chat.author?.nick %></p>
@@ -21,8 +22,8 @@
                             
                             <!-- Jeśli user jest zalogowany -->
                             <% if (user) { %>
-                                <!-- Sprawdzamy czy user jest założycielem chatu -->
-                                <% if (chat.author.nick == user.nick) { %>
+                                <!-- Sprawdzamy czy user jest adminem -->
+                                <% if (user.role == 'admin') { %>
                                     <a href="/zalogowany/chat/<%= chat.slug %>/edytuj"
                                         class="btn btn-warning">Edytuj</a>
                                     <a href="/zalogowany/chat/<%= chat.slug %>/usun"

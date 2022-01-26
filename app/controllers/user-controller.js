@@ -14,7 +14,7 @@ class UserController {
             nick: req.body.nick,
             email: req.body.email,
             password: req.body.password,
-            player: false
+            role: 'user'
         });
 
         try {

@@ -8,15 +8,24 @@ class BetController {
         // console.log(req.body); //req.body to przekazywany obiekt
 
         let matchCurrent = req.body.matchCurrent; //tablica obiektów - ukończony mecz 
-        matchCurrent = matchCurrent[0];        
+        matchCurrent = matchCurrent[0];           
 
         let matchUpcoming = req.body.matchUpcoming; //tablica obiektów - nadchodzący mecz
         matchUpcoming = matchUpcoming[0];
 
         //Przypisanie końcowego wyniku meczu do typów użytkowników
-        const score = await Score.findOne({ gameweek: matchCurrent.matchday });
-        score.correctScoreHome = matchCurrent.score.fullTime.homeTeam;
-        score.correctScoreAway = matchCurrent.score.fullTime.awayTeam;
+        const scores = await Score.find({ gameweek: matchCurrent.matchday });
+        for (const score of scores) {
+            score.correctScoreHome = matchCurrent.score.fullTime.homeTeam;
+            score.correctScoreAway = matchCurrent.score.fullTime.awayTeam;          
+            
+            try {
+                await score.save();
+            } catch (e) {
+                console.log('BŁĄD Z ZAPISEM CORRECT WYNIKU');
+                console.log(e);
+            }
+        }
 
         try {
             const matchObject = new Match({
@@ -29,15 +38,11 @@ class BetController {
                 winner: matchCurrent.score.winner,
                 status: matchCurrent.status,
             });
-
-            await score.save();
+            
             await matchObject.save();
-            res.status(201); //dokument został utworzony
         } catch (e) {
-            console.log('error');
-            res.status(422).json({
-                errors: e.errors
-            });
+            console.log('BŁĄD Z ZAPISEM MECZU FINISHED');
+            console.log(e);
         }
 
         try {

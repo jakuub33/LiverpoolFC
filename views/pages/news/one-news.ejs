@@ -10,6 +10,17 @@
             
             <div class="card-body">
                 <h1><%= oneNews.mainTitle %></h1> <!-- Użycie zmiennej przekazanej w kontrolerze -->
+                <% 
+                    let date = oneNews.date;
+                    date = date.toISOString(); 
+                    const year = date.slice(0, 4);
+                    const month = date.slice(5, 7);
+                    const day = date.slice(8, 10);
+                    const hours = parseInt(date.slice(11, 13)) + 1;
+                    const mins = date.slice(14, 16);
+                    date = `${day}.${month}.${year} • ${hours}:${mins}`; 
+                %>
+                <p><small class="text-muted"><%= date %></small></p>
                 <p><b>Autor:</b> <%= oneNews.author.nick %></p>
                 <p><%= oneNews.text %></p>
                 <br>
@@ -37,14 +48,17 @@
                                 <br>           
                                 <%= comment.text %></p>
 
-                                <!-- Sprawdzm czy user jest zalogowany i jest autorem komentarza -->
-                                <% if (user && comment.author == user.nick) { %>
-                                    <!-- Przekazuje slug aktualnosci i id komentarza -->
-                                    <a href="/zalogowany/wiadomosci/<%= oneNews.slug %>/<%= comment._id %>/usun-komentarz" 
-                                        onclick="return confirm('Czy jesteś pewien?')"
-                                        class="btn btn-danger position-absolute bottom-0 end-0 m-2">Usuń
-                                    </a>
-                                                                  
+                                <!-- Sprawdzm czy user jest zalogowany -->
+                                <% if (user) { %>
+                                    <!--  Czy jest autorem komentarza lub adminem -->
+                                    <% if (comment.author == user.nick || user.role == 'admin') { %>
+                                        <!-- Przekazuje slug aktualnosci i id komentarza -->
+                                        <a href="/zalogowany/wiadomosci/<%= oneNews.slug %>/<%= comment._id %>/usun-komentarz" 
+                                            onclick="return confirm('Czy jesteś pewien?')"
+                                            class="btn btn-danger position-absolute bottom-0 end-0 m-2">Usuń
+                                        </a>
+
+                                    <% } %>  
                                 <% } %>  
                             </div>
                         <% }); %>

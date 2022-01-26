@@ -41,9 +41,10 @@ async function getData(currentMatchday) {
         const upcomingMatchday = parseInt(currentMatchday) + 1;
 
         //pobieramy mecze z następnej kolejki
-        const upcomingMatches = await axios.get(`https://api.football-data.org/v2/competitions/PL/matches?matchday=${upcomingMatchday}`, {
-            headers: headers
-        }).then(resp => resp.data.matches)
+        const upcomingMatches = 
+            await axios.get(`https://api.football-data.org/v2/competitions/PL/matches?matchday=${upcomingMatchday}`, {
+                headers: headers
+            }).then(resp => resp.data.matches)
 
         //w 10 meczach danej kolejki potrzebujemy tylko mecz Liverpoolu
         let matchUpcoming = upcomingMatches.filter(match =>
@@ -54,6 +55,7 @@ async function getData(currentMatchday) {
             matchUpcoming,
         })
     } catch (error) {
+        console.error("BŁĄD Z GET DATA");
         console.error(error);
     }
 }

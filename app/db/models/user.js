@@ -23,9 +23,14 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        required: [true, 'Pole hasło jest wymagane'],
+        required: [true, 'Pole hasło jest wymagane!'],
         validate: [checkPassword, 'Hasło musi zawierać od 6 do 20 znaków, przynajmniej 1 cyfra, 1 duża i 1 mała litera!'],
     },
+    role: {
+        type: String,
+        required: [true, 'Rola użytkownika jest wymagana!'],
+        enum: ['user', 'admin']
+    }
 });
 //##############################################################
 //Operacje po wpisaniu danych przez usera, na których możemy dokonać zmiany przed dodaniem do bd

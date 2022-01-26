@@ -2,7 +2,8 @@
     <div class="card card-body bg-dark text-white">
         <h1 class="text-center">Wiadomości:</h1>
 
-        <% if (user) { %>
+        <!-- Sprawdzamy czy zalogowany user jest adminem -->
+        <% if (user && user.role == 'admin') { %>
             <a href="/zalogowany/wiadomosci/dodaj" class="btn btn-success mb-3">Dodaj nową wiadomość!</a>
         <% } %>
             
@@ -47,8 +48,8 @@
                                         <!-- Jeśli user jest zalogowany -->
                                         <% if (user) { %>
                                         
-                                            <!-- Sprawdzamy czy user jest autorem aktualności -->
-                                            <% if (oneNews.author.nick == user.nick) { %>
+                                            <!-- Sprawdzamy czy user jest adminem -->
+                                            <% if (user.role == 'admin') { %>
                                                 <a href="/zalogowany/wiadomosci/<%= oneNews.slug %>/edytuj" class="btn btn-warning">Edytuj</a>
                                                 <a href="/zalogowany/wiadomosci/<%= oneNews.slug %>/usun" 
                                                     onclick="return confirm('Czy jesteś pewien?')"
