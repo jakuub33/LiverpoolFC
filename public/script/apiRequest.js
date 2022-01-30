@@ -12,7 +12,7 @@ export const getDataForShedule = () => {
           'X-Auth-Token': personalToken
     }}).then(resp => resp.json())
     .catch((error) => {
-        alert("Wystąpił problem z danymi")
+        // alert("Wystąpił problem z danymi")
         console.error('Error:', error);
     });
 }
@@ -24,7 +24,7 @@ export const getDataForTable = () => {
           'X-Auth-Token': personalToken
     }}).then(resp => resp.json())
     .catch((error) => {
-        alert("Wystąpił problem z danymi")
+        // alert("Wystąpił problem z danymi")
         console.error('Error:', error);
     });
 }
