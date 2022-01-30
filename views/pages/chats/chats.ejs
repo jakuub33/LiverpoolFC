@@ -18,7 +18,7 @@
                             <p class="h3 mb-3"><%= chat.nameChat %></p>
                             <p><b>Założyciel:</b> <%= chat.author?.nick %></p>
                             <p><b>Wiadomości:</b> <%= chat.messages.length %></p>
-                            <a href="/chat/<%= chat.slug %>" class="btn btn-dark">Zobacz</a>
+                            <a href="/chat/<%= chat.slug %>" class="btn btn-dark">Dołącz</a>
                             
                             <!-- Jeśli user jest zalogowany -->
                             <% if (user) { %>
