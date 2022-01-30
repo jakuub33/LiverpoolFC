@@ -4,6 +4,7 @@
   "description": "- <a href=\"https://tomek105.github.io/ZPItemplate/\" target=\"_blank\">`Wizytówka projektu`</a>",
   "main": "index.js",
   "scripts": {
+    "start": "node app/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
